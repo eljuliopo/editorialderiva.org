@@ -1,6 +1,6 @@
 import React from 'react'
 import { StaticQuery, navigate, graphql } from 'gatsby'
-import { Container, Grid, Header, Image, Segment } from 'semantic-ui-react'
+import { Grid, Header, Image, Segment } from 'semantic-ui-react'
 import Helmet from 'react-helmet'
 
 const Catalog = ({ mobile }) => (

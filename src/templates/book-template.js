@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { graphql } from 'gatsby'
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { graphql, navigate } from 'gatsby'
+import { Segment, Container, Image, Header } from 'semantic-ui-react'
 
 class BookTemplate extends Component {
   render() {
@@ -12,13 +12,28 @@ class BookTemplate extends Component {
       abstract,
     } = this.props.data.contentfulBook
     return (
-      <div>
-        <h1>{title}</h1>
-        <p>{author}</p>
-        <img src={cover.resize.src} alt={id} />
-        {documentToHtmlString(JSON.parse(abstract.abstract))}
-        <a href="/catalog">back to Catalog</a>
-      </div>
+      <Segment inverted vertical style={{ minHeight: '100vh' }}>
+        <Container>
+          <Image src={cover.resize.src} alt={id} floated="left" />
+          <Header inverted>
+            {title}
+            <Header.Subheader>{author}</Header.Subheader>
+          </Header>
+          {abstract.content.map((paragraph, index) => {
+            return (
+              <p
+                key={index}
+                style={{
+                  textAlign: 'justify',
+                }}
+              >
+                {paragraph.content[0].value.trim()}
+              </p>
+            )
+          })}
+          <Header onClick={() => navigate('/catalog')}>back to Catalog</Header>
+        </Container>
+      </Segment>
     )
   }
 }
@@ -32,7 +47,7 @@ export const pageQuery = graphql`
       title
       author
       cover {
-        resize(width: 200, resizingBehavior: THUMB) {
+        resize(width: 480, resizingBehavior: THUMB) {
           src
         }
       }
