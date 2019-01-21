@@ -1,61 +1,55 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
-import get from 'lodash/get'
+import { StaticQuery, navigate, graphql } from 'gatsby'
+import { Container, Grid, Header, Image, Segment } from 'semantic-ui-react'
 import Helmet from 'react-helmet'
 
-class Catalog extends React.Component {
-  render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBook.edges')
-
-    return (
-      <div style={{ background: '#fff' }}>
-        <Helmet title={siteTitle} />
-        <div className="wrapper">
-          {posts.map(({ node }) => {
-            return (
-              <div key={node.id}>
-                <Link to={'/' + node.id}>
-                  <img src={node.cover.resize.src} alt={node.id} />
-                  <h1>{node.title}</h1>
-                  <p>{node.author}</p>
-                </Link>
-              </div>
-            )
-          })}
-          <Link
-            style={{
-              position: 'fixed',
-              top: '10px',
-              right: '10px',
-            }}
-            to="/"
-          >
-            Home
-          </Link>
-        </div>
-      </div>
-    )
-  }
-}
-
-export default Catalog
-
-export const pageQuery = graphql`
-  query CatalogQuery {
-    allContentfulBook {
-      edges {
-        node {
-          id
-          title
-          author
-          cover {
-            resize(width: 200, resizingBehavior: THUMB) {
-              src
+const Catalog = ({ mobile }) => (
+  <StaticQuery
+    query={graphql`
+      query CatalogQuery {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+        allContentfulBook {
+          edges {
+            node {
+              id
+              title
+              author
+              cover {
+                resize(width: 600, height: 820, resizingBehavior: THUMB) {
+                  src
+                }
+              }
             }
           }
         }
       }
-    }
-  }
-`
+    `}
+    render={data => (
+      <Segment inverted vertical>
+        <Helmet title={data.site.siteTitle} />
+        <Grid container centered columns={mobile ? 1 : 3}>
+          {data.allContentfulBook.edges.map(({ node }) => {
+            return (
+              <Grid.Column key={node.id}>
+                <Segment basic inverted onClick={() => navigate(`/${node.id}`)}>
+                  <Image fluid src={node.cover.resize.src} alt={node.id} />
+                  <Header inverted>
+                    {node.title}
+                    <Header.Subheader>{node.author}</Header.Subheader>
+                  </Header>
+                </Segment>
+              </Grid.Column>
+            )
+          })}
+        </Grid>
+        {console.log(mobile)}
+      </Segment>
+    )}
+  />
+)
+
+export default Catalog
