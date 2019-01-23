@@ -49,7 +49,7 @@ const IndexPage = ({ mobile }) => (
               />
               <Header
                 as="h2"
-                content="Visualizaciones de Datos de la ciudad Talca."
+                content="Ante la propiedad intelectual, promovemos intelecto contra la propiedad"
                 inverted
                 style={{
                   fontSize: mobile ? '1.5em' : '1.7em',
@@ -64,7 +64,7 @@ const IndexPage = ({ mobile }) => (
                 size="huge"
                 onClick={() => navigate('/catalog')}
               >
-                Get Started
+                Mira el catálogo
                 <Icon name="right arrow" />
               </Button>
             </Grid.Column>

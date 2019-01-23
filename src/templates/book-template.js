@@ -15,6 +15,7 @@ class BookTemplate extends Component {
       pages,
       link,
       price,
+      binding,
       abstract
     } = this.props.data.contentfulBook
     return (
@@ -41,11 +42,12 @@ class BookTemplate extends Component {
               </p>
             )
           })}
-          <List.Item>Publicación original: « {original} »</List.Item>
+          <List.Item>1ra edición:<br/> « {original} »</List.Item>
           <Divider />
 
             <List.Item></List.Item>
             <List.Item>Valor impreso: ${price}</List.Item>
+            <List.Item>{pages} págs {binding}</List.Item>
             <List.Item><a href={link} target="_blank" rel="noopener noreferrer"><Icon name='download' />Versión digital</a></List.Item>
 
 
@@ -70,6 +72,7 @@ export const pageQuery = graphql`
       pages
       price
       link
+      binding
       cover {
         resize(width: 400, resizingBehavior: THUMB) {
           src
