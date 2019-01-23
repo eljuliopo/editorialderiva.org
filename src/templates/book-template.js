@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { graphql, navigate } from 'gatsby'
-import { Segment, Container, Image, Header } from 'semantic-ui-react'
+import { Segment, Container, Image, Header, Divider, Icon, List } from 'semantic-ui-react'
 
 class BookTemplate extends Component {
   render() {
@@ -9,15 +9,25 @@ class BookTemplate extends Component {
       title,
       author,
       cover,
-      abstract,
+      original,
+      collection,
+      genre,
+      pages,
+      link,
+      price,
+      abstract
     } = this.props.data.contentfulBook
     return (
       <Segment inverted vertical style={{ minHeight: '100vh' }}>
         <Container>
-          <Image src={cover.resize.src} alt={id} floated="left" />
+          <Image src={cover.resize.src} alt={id} floated="left"  rounded />
           <Header inverted>
             {title}
             <Header.Subheader>{author}</Header.Subheader>
+            <Header.Subheader>{pages} págs | {genre}</Header.Subheader>
+            <Header.Subheader>Colección <b>{collection}</b></Header.Subheader>
+
+            <Divider />
           </Header>
           {abstract.content.map((paragraph, index) => {
             return (
@@ -31,7 +41,15 @@ class BookTemplate extends Component {
               </p>
             )
           })}
-          <Header onClick={() => navigate('/catalog')}>back to Catalog</Header>
+          <List.Item>Publicación original: « {original} »</List.Item>
+          <Divider />
+
+            <List.Item></List.Item>
+            <List.Item>Valor impreso: ${price}</List.Item>
+            <List.Item><a href={link} target="_blank" rel="noopener noreferrer"><Icon name='download' />Versión digital</a></List.Item>
+
+
+          <Header inverted onClick={() => navigate('/catalog')}>back to Catalog</Header>
         </Container>
       </Segment>
     )
@@ -46,8 +64,14 @@ export const pageQuery = graphql`
       id
       title
       author
+      original
+      collection
+      genre
+      pages
+      price
+      link
       cover {
-        resize(width: 480, resizingBehavior: THUMB) {
+        resize(width: 400, resizingBehavior: THUMB) {
           src
         }
       }
