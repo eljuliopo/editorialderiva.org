@@ -36,7 +36,7 @@ class BookTemplate extends Component {
                 key={index}
                 style={{
                   textAlign: 'justify',
-                  fontSize: '1.33em',
+                  fontSize: '1em',
                 }}
               >
                 {paragraph.content[0].value.trim()}
