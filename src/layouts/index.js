@@ -5,6 +5,13 @@ import { StaticQuery, graphql } from 'gatsby'
 import { Responsive } from 'semantic-ui-react'
 
 import 'semantic-ui-css/semantic.min.css'
+import NavBar from '../components/NavBar'
+
+const getWidth = () => {
+  const isSSR = typeof window === 'undefined'
+
+  return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
+}
 
 const Layout = ({ children, location }) => (
   <StaticQuery
@@ -28,12 +35,20 @@ const Layout = ({ children, location }) => (
         >
           <html lang="en" />
         </Helmet>
-        <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
+        <Responsive
+          getWidth={getWidth}
+          maxWidth={Responsive.onlyMobile.maxWidth}
+        >
+          <NavBar mobile />
           {React.Children.map(children, (child, i) =>
             React.cloneElement(child, { mobile: true })
           )}
         </Responsive>
-        <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+        <Responsive
+          getWidth={getWidth}
+          minWidth={Responsive.onlyTablet.minWidth}
+        >
+          <NavBar />
           {React.Children.map(children, (child, i) =>
             React.cloneElement(child, { mobile: false })
           )}
