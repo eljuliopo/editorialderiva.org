@@ -16,8 +16,8 @@ class NavBar extends React.Component {
         fixed={fixed ? 'top' : null}
         inverted={!fixed}
         pointing={!fixed}
-        secondary={!fixed}
-        size="large"
+        secondary={!fixed} 
+        size="tiny"
         style={{
           position: 'absolute',
           width: '100vw',

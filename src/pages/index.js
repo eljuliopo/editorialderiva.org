@@ -31,7 +31,7 @@ const IndexPage = ({ mobile }) => (
           inverted
           textAlign="center"
           // style={{ minHeight: 700, padding: '1em 0em' }}
-          style={{ height: '100vh', padding: '1em 0em' }}
+          style={{ height: '100vh', padding: '1em 0em', backgroundImage: `url('src/images/sea2.gif')` }}
           vertical
         >
           <Grid container verticalAlign="middle" style={{ height: '100vh' }}>
