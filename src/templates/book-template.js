@@ -14,8 +14,8 @@ class BookTemplate extends Component {
     return (
       <Segment inverted vertical style={{ minHeight: '100vh' }}>
         <Container>
-          <Image src={cover.resize.src} alt={id} floated="left" />
-          <Header inverted>
+          <Image size="large" src={cover.resize.src} alt={id} floated="left" />
+          <Header as="h3" style={{ fontSize: '2em' }} inverted>
             {title}
             <Header.Subheader>{author}</Header.Subheader>
           </Header>
@@ -25,6 +25,7 @@ class BookTemplate extends Component {
                 key={index}
                 style={{
                   textAlign: 'justify',
+                  fontSize: '1.33em',
                 }}
               >
                 {paragraph.content[0].value.trim()}

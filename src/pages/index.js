@@ -31,10 +31,10 @@ const IndexPage = ({ mobile }) => (
           inverted
           textAlign="center"
           // style={{ minHeight: 700, padding: '1em 0em' }}
-          style={{ height: 643.167, padding: '1em 0em' }}
+          style={{ height: '100vh', padding: '1em 0em' }}
           vertical
         >
-          <Grid container verticalAlign="middle" style={{ height: 700 }}>
+          <Grid container verticalAlign="middle" style={{ height: '100vh' }}>
             <Grid.Column>
               <Header
                 as="h1"
