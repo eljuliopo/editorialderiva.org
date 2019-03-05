@@ -20,6 +20,20 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
+          allContentfulCollection {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+          allContentfulOriginalPublication {
+            edges {
+              node {
+                id
+              }
+            }
+          }
         }
       `).then(result => {
         if (result.errors) {

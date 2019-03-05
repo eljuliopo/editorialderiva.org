@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { graphql, navigate } from 'gatsby'
-import { Segment, Container, Image, Header, Divider, Icon, List } from 'semantic-ui-react'
+import { Segment, Container, Image, Header, Divider, Icon, List, Grid} from 'semantic-ui-react'
 
 class BookTemplate extends Component {
   render() {
@@ -8,9 +8,9 @@ class BookTemplate extends Component {
       id,
       title,
       author,
-      cover,
-      original,
       collection,
+      original,
+      cover,
       genre,
       pages,
       link,
@@ -18,6 +18,7 @@ class BookTemplate extends Component {
       binding,
       abstract
     } = this.props.data.contentfulBook
+
     return (
       <Segment inverted vertical style={{ minHeight: '100vh' }}>
         <Container>
@@ -26,7 +27,7 @@ class BookTemplate extends Component {
             {title}
             <Header.Subheader>{author}</Header.Subheader>
             <Header.Subheader>{pages} págs | {genre}</Header.Subheader>
-            <Header.Subheader>Colección <b>{collection}</b></Header.Subheader>
+            <Header.Subheader>Colección <b>{collection.nameCollection}</b></Header.Subheader>
 
             <Divider />
           </Header>
@@ -35,7 +36,7 @@ class BookTemplate extends Component {
               <p
                 key={index}
                 style={{
-                  textAlign: 'justify',
+                  textAlign: 'left',
                   fontSize: '1em',
                 }}
               >
@@ -43,16 +44,31 @@ class BookTemplate extends Component {
               </p>
             )
           })}
-          <List.Item>1ra edición:<br/> « {original} »</List.Item>
+        <Divider />
+
+          <Grid columns={2} inverted relaxed='very' stackable>
+            <Grid.Column>
+              <List.Item>
+              Primera publicación:
+              </List.Item>
+              <List.Item>
+              « {original.originalTitle} » por {original.originalEditorial}, {original.originalYear}
+              </List.Item>
+            </Grid.Column>
+            <Grid.Column>
+              <List.Item></List.Item>
+              <List.Item>Valor impreso: ${price}</List.Item>
+              <List.Item>{pages} págs {binding}</List.Item>
+              <List.Item><a href={link} target="_blank" rel="noopener noreferrer"><Icon name='download' />Versión digital</a></List.Item>
+
+            </Grid.Column>
+
+          </Grid>
+
           <Divider />
 
-            <List.Item></List.Item>
-            <List.Item>Valor impreso: ${price}</List.Item>
-            <List.Item>{pages} págs {binding}</List.Item>
-            <List.Item><a href={link} target="_blank" rel="noopener noreferrer"><Icon name='download' />Versión digital</a></List.Item>
 
-
-          <Header inverted onClick={() => navigate('/catalog')}>back to Catalog</Header>
+          <Header as='h4' inverted textAlign='right' onClick={() => navigate('/catalog')}><Icon name='long arrow alternate left' size='mini' />Volver al catálogo</Header>
         </Container>
       </Segment>
     )
@@ -67,9 +83,15 @@ export const pageQuery = graphql`
       id
       title
       author
-      original
-      collection
       genre
+      original {
+          originalTitle
+          originalEditorial
+          originalYear
+      }
+      collection {
+        nameCollection
+      }
       pages
       price
       link

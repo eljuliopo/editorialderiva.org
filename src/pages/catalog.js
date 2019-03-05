@@ -18,7 +18,9 @@ const Catalog = ({ mobile }) => (
               id
               title
               author
-              collection
+              collection {
+                nameCollection
+              }
               genre
               pages
               cover {
@@ -49,7 +51,7 @@ const Catalog = ({ mobile }) => (
                     {node.title}
                     <Header.Subheader>{node.author}</Header.Subheader>
                     <Header.Subheader>{node.pages} págs | {node.genre}</Header.Subheader>
-                    <Header.Subheader><b>{node.collection}</b></Header.Subheader>
+                    <Header.Subheader><b>{node.collection.nameCollection}</b></Header.Subheader>
                   </Header>
               </Segment>
 
