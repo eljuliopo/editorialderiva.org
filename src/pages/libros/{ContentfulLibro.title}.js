@@ -39,9 +39,9 @@ export const itemQuery = graphql`
       contentful_id
       title
       description {
-        childMdx {
-          body
-        }
+        # childMdx {
+        #   body
+        # }
         description
       }
       authors

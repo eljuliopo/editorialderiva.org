@@ -2,7 +2,7 @@
 import { jsx, Grid, Themed, Box } from "theme-ui"
 import { graphql } from "gatsby"
 
-import Item from "../../components/item-small"
+// import Item from "../../components/item-small"
 import Layout from "../../components/layout"
 import Seo from "../../components/seo"
 
@@ -15,7 +15,7 @@ export default function CatalogPage({ data, ...props }) {
         <Themed.h2>Todos nuestros libros</Themed.h2>
         <Grid variant="primary" columns={[1, 3]}>
           {items.map(item => (
-            <Item key={item.contentful_id} data={item} />
+            <div key={item.contentful_id} data={item} />
           ))}
         </Grid>
       </Box>
