@@ -1,18 +1,16 @@
-import React, { useState } from "react"
+/** @jsx jsx */
+import { jsx, Grid, Box, Themed, Button } from "theme-ui"
+import { GatsbyImage } from "gatsby-plugin-image"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import { graphql } from "gatsby"
 import { useCart } from "../../store"
 
-// import Item from "../../components/item-template"
 import Layout from "../../components/layout"
 import Seo from "../../components/seo"
 
 export default function Libro(props) {
-  const [quantity, updateQuantity] = useState(1)
-  const increment = () => updateQuantity(quantity + 1)
-  const decrement = () => (quantity === 1 ? null : updateQuantity(quantity - 1))
-  const { addToCart, cart } = useCart()
+  const { addToCart } = useCart()
   const current = props.data.contentfulLibro
-  console.log(current)
   return (
     <Layout {...props}>
       <Seo
@@ -22,13 +20,43 @@ export default function Libro(props) {
         image={current.image.gatsbyImageData.images.fallback.src}
         author={current.authors}
       />
-      <div
-        data={current}
-        quantity={quantity}
-        increment={() => increment()}
-        decrement={() => decrement()}
-        addToCart={() => addToCart({ ...current, quantity })}
-      />
+      <Grid columns={[1, "1fr 2.4fr"]} variant="primary">
+        <Box
+          sx={{
+            position: [null, "sticky"],
+            alignSelf: [null, "start"],
+            top: [null, 56],
+          }}
+        >
+          <GatsbyImage
+            image={current.image.gatsbyImageData}
+            alt={current.title}
+            objectFit="contain"
+            sx={{ mx: "auto", cursor: "pointer" }}
+          />
+        </Box>
+        <Box>
+          <Themed.h2>{current.title}</Themed.h2>
+          <Themed.h5 sx={{ mt: 1 }}>por {current.authors[0]}</Themed.h5>
+          <Themed.h3>${current.price}</Themed.h3>
+          <MDXRenderer>{current.description.childMdx.body}</MDXRenderer>
+          <Themed.p>ISBN: {current.isbn} </Themed.p>
+          <Themed.p>{current.pages} páginas</Themed.p>
+          <Themed.p>
+            {current.height} x {current.width} cm.
+          </Themed.p>
+          <Themed.p>{current.year}</Themed.p>
+          <div
+            sx={{
+              display: "flex",
+              flexDirection: ["column", "column", "row"],
+              alignItems: ["stretch", "stretch", "center"],
+            }}
+          >
+            <Button onClick={() => addToCart(current)}>Agregar al carro</Button>
+          </div>
+        </Box>
+      </Grid>
     </Layout>
   )
 }
@@ -39,9 +67,9 @@ export const itemQuery = graphql`
       contentful_id
       title
       description {
-        # childMdx {
-        #   body
-        # }
+        childMdx {
+          body
+        }
         description
       }
       authors
