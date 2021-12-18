@@ -10,7 +10,7 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function Seo({ description, lang, meta, title }) {
+function Seo({ description, lang, meta, title, image }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -19,6 +19,8 @@ function Seo({ description, lang, meta, title }) {
             title
             description
             author
+            image
+            siteUrl
           }
         }
       }
@@ -27,7 +29,8 @@ function Seo({ description, lang, meta, title }) {
 
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
-
+  const defaults = site.siteMetadata
+  const metaImage = image ? new URL(image, defaults.siteUrl) : false
   return (
     <Helmet
       htmlAttributes={{
@@ -36,38 +39,17 @@ function Seo({ description, lang, meta, title }) {
       title={title}
       titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
       meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
+        { name: `description`, content: metaDescription },
+        { name: `image`, content: image },
+        { property: `og:title`, content: title },
+        { property: `og:description`, content: metaDescription },
+        { property: `og:type`, content: `website` },
+        { property: "og:image", content: metaImage },
+        { name: `twitter:card`, content: `summary` },
+        { name: `twitter:creator`, content: defaults.author || `` },
+        { name: `twitter:title`, content: title },
+        { name: `twitter:description`, content: metaDescription },
+        { name: "twitter:image", content: metaImage },
       ].concat(meta)}
     />
   )
