@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Grid, Themed, Box } from "theme-ui"
+import { jsx, Themed, Grid } from "theme-ui"
 import { graphql } from "gatsby"
 
 import Layout from "../../components/layout"
