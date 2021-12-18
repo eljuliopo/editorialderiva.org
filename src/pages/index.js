@@ -21,10 +21,11 @@ const IndexPage = () => (
       style={{ marginBottom: `1.45rem` }}
     />
     <Themed.p>
+      Ir al{" "}
       <Themed.a as={Link} to="/libros/">
-        Go to /libros
-      </Themed.a>{" "}
-      <br />
+        catálogo
+      </Themed.a>
+      .
     </Themed.p>
   </Layout>
 )
