@@ -44,6 +44,4 @@ const theme = merge(base, {
   },
 })
 
-console.log(theme)
-
 export default theme
