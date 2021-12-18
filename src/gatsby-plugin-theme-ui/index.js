@@ -28,6 +28,28 @@ const theme = merge(base, {
     footer: { width: "100%", textAlign: "center", py: 3 },
     container: { maxWidth: "container", mx: "auto", px: 3 },
   },
+  grids: {
+    primary: {
+      gap: 5,
+      gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    },
+  },
+  cards: {
+    primary: {
+      boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
+      "&:hover": {
+        boxShadow: "0 0 16px rgba(0, 0, 0, 0.250)",
+      },
+    },
+  },
+  text: {
+    truncate: {
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      my: 0,
+    },
+  },
   styles: {
     a: {
       textDecoration: "none",

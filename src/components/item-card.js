@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Box, Themed, Card, Button } from "theme-ui"
+import { jsx, Themed, Card, Button } from "theme-ui"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import slugify from "slugify"
@@ -58,38 +58,34 @@ export function Image({ data, ...props }) {
 export default function Item({ data }) {
   const { addToCart } = useCart()
   return (
-    <Box>
-      <Card sx={{ maxWidth: 192 }}>
-        <Link to={"/libros/" + slugify(data.title.toLowerCase())}>
-          <Image
-            data={data.image}
-            alt={data.title}
-            overlay={data.title}
-            objectFit="cover"
-          />
-        </Link>
+    <Card>
+      <Link to={"/libros/" + slugify(data.title.toLowerCase())}>
+        <Image
+          data={data.image}
+          alt={data.title}
+          overlay={data.title}
+          objectFit="cover"
+        />
+      </Link>
 
-        <div sx={{ p: 2 }}>
-          <Themed.h4 sx={{ variant: "text.truncate" }}>
-            <Themed.a
-              as={Link}
-              to={"/libros/" + slugify(data.title.toLowerCase())}
-            >
-              {data.title}
-            </Themed.a>
-          </Themed.h4>
-          <Themed.p sx={{ variant: "text.truncate" }}>
-            {data.authors[0]}
-          </Themed.p>
-          <Themed.p sx={{ variant: "text.truncate" }}>${data.price}</Themed.p>
-          <Button
-            sx={{ width: "100%" }}
-            onClick={() => addToCart({ ...data, quantity: 1 })}
+      <div sx={{ p: 2 }}>
+        <Themed.h4 sx={{ variant: "text.truncate" }}>
+          <Themed.a
+            as={Link}
+            to={"/libros/" + slugify(data.title.toLowerCase())}
           >
-            Agregar al carro
-          </Button>
-        </div>
-      </Card>
-    </Box>
+            {data.title}
+          </Themed.a>
+        </Themed.h4>
+        <Themed.p sx={{ variant: "text.truncate" }}>{data.authors[0]}</Themed.p>
+        <Themed.p sx={{ variant: "text.truncate" }}>${data.price}</Themed.p>
+        <Button
+          sx={{ width: "100%" }}
+          onClick={() => addToCart({ ...data, quantity: 1 })}
+        >
+          Agregar al carro
+        </Button>
+      </div>
+    </Card>
   )
 }
