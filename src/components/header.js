@@ -5,7 +5,6 @@ import { Link } from "gatsby"
 const Header = ({ siteTitle }) => (
   <header
     sx={{
-      width: "100%",
       variant: "layout.header",
     }}
   >

@@ -18,19 +18,12 @@ const Layout = ({ children }) => {
   )
 
   return (
-    <div
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        variant: "layout.root",
-      }}
-    >
+    <div sx={{ variant: "layout.root" }}>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <main sx={{ width: "100%", flex: "1 1 auto", variant: "layout.main" }}>
+      <main sx={{ variant: "layout.main" }}>
         <Container>{children}</Container>
       </main>
-      <footer sx={{ width: "100%", variant: "layout.footer" }}>
+      <footer sx={{ variant: "layout.footer" }}>
         <Container>
           © {new Date().getFullYear()}, Built with{" "}
           <Themed.a href="https://www.gatsbyjs.com">Gatsby</Themed.a>
