@@ -21,8 +21,8 @@ const IndexPage = () => (
       style={{ marginBottom: `1.45rem` }}
     />
     <Themed.p>
-      <Themed.a as={Link} to="/page-2/">
-        Go to page 2
+      <Themed.a as={Link} to="/libros/">
+        Go to /libros
       </Themed.a>{" "}
       <br />
     </Themed.p>
