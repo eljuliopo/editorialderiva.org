@@ -59,7 +59,7 @@ export default function Item({ data }) {
   const { addToCart } = useCart()
   return (
     <Card>
-      <Link to={"/libros/" + slugify(data.title.toLowerCase())}>
+      <Link to={"/catalogo/" + slugify(data.title.toLowerCase())}>
         <Image
           data={data.image}
           alt={data.title}
@@ -72,7 +72,7 @@ export default function Item({ data }) {
         <Themed.h4 sx={{ variant: "text.truncate" }}>
           <Themed.a
             as={Link}
-            to={"/libros/" + slugify(data.title.toLowerCase())}
+            to={"/catalogo/" + slugify(data.title.toLowerCase())}
           >
             {data.title}
           </Themed.a>
