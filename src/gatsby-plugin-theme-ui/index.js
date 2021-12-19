@@ -82,6 +82,19 @@ const theme = merge(base, {
       my: 0,
     },
   },
+  buttons: {
+    primary: {
+      border: theme => `1px solid ${theme.colors.primary}`,
+      borderRadius: 0,
+      cursor: "pointer",
+      bg: "primary",
+      color: "background",
+      "&:hover": {
+        bg: "secondary",
+        color: "primary",
+      },
+    },
+  },
   styles: {
     a: {
       textDecoration: "none",
