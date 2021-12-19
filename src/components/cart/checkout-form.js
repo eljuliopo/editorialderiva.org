@@ -1,10 +1,6 @@
 /** @jsx jsx */
-import { jsx, Themed, Grid, Box, Card, Label, Input, Button } from "theme-ui"
-import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useState } from "react"
-import { navigate } from "gatsby"
-// import { parseAuthors } from "../utils"
-// import QuantityPicker from "./quantity-picker"
+import { jsx, Box, Label, Input, Button } from "theme-ui"
+import { useState } from "react"
 import { useCart } from "../../store"
 
 export default function CheckoutForm() {
