@@ -5,12 +5,12 @@ import { useCart } from "../store"
 
 const pickerButtonsStyles = {
   width: 20,
-  height: 20,
+  height: 18,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   p: 0,
-  border: ({ colors }) => `solid 1px ${colors.primary}`,
+  border: "none",
   borderRadius: 0,
 }
 
@@ -21,7 +21,6 @@ export default function QtyPicker({ item, ...props }) {
       sx={{
         display: "flex",
         alignItems: "center",
-        border: ({ colors }) => `solid 1px ${colors.primary}`,
       }}
       {...props}
     >
@@ -30,15 +29,27 @@ export default function QtyPicker({ item, ...props }) {
           m: 0,
           textAlign: "center",
           width: 40,
+          height: 35,
+          borderBottom: ({ colors }) => `solid 1px ${colors.primary}`,
+          borderTop: ({ colors }) => `solid 1px ${colors.primary}`,
+          borderLeft: ({ colors }) => `solid 1px ${colors.primary}`,
         }}
       >
         {item.quantity}
       </Themed.p>
-      <div sx={{ display: "flex", flexDirection: "column" }}>
+      <div
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: 35,
+          overflow: "hidden",
+          justifyContent: "center",
+        }}
+      >
         <Button
           sx={{
             ...pickerButtonsStyles,
-            border: ({ colors }) => `solid 0.5px ${colors.background}`,
+            borderBottom: ({ colors }) => `solid 0.5px ${colors.background}`,
           }}
           onClick={() => increment(item)}
         >
@@ -47,7 +58,6 @@ export default function QtyPicker({ item, ...props }) {
         <Button
           sx={{
             ...pickerButtonsStyles,
-            border: ({ colors }) => `solid 0.5px ${colors.background}`,
           }}
           onClick={() => decrement(item)}
         >
