@@ -16,7 +16,7 @@ export default function Cart() {
   return (
     <React.Fragment>
       {cart.length ? (
-        <Grid columns={[1, 2]} variant="primary">
+        <Grid columns={[1, 1, 2]}>
           <ItemList />
           <CheckoutForm />
         </Grid>
