@@ -1,85 +1,83 @@
 /** @jsx jsx */
-import { jsx, Themed, Box, Card } from "theme-ui"
-import { navigate } from "gatsby"
+import { jsx, Themed, Box, Card, Button, Grid, Flex } from "theme-ui"
+import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-
+import slugify from "slugify"
 // import { parseAuthors } from "../utils"
-// import QuantityPicker from "./quantity-picker"
+import QuantityPicker from "../quantity-picker"
 
 import { useCart } from "../../store"
 
-export function CartItem({ item }) {
-  const { removeFromCart /* increment, decrement */ } = useCart()
+function RemoveButton({ item }) {
+  const { removeFromCart } = useCart()
   return (
-    <Card sx={{ position: "relative", display: "flex", mb: 3 }}>
-      <div
-        sx={{
-          width: 100.4,
-          height: 122.0,
-          bg: "muted",
-          display: "flex",
-          // p: 2,
-        }}
-      >
-        <GatsbyImage
-          image={item.image.gatsbyImageData}
-          alt={item.title}
-          objectFit="contain"
-          sx={{ mx: "auto", cursor: "pointer" }}
-          onClick={() => navigate("/" + item.fields.slug)}
-        />
-      </div>
-      <Box
-        sx={{
-          p: 3,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          width: "100%",
-        }}
-      >
-        <div>
-          <Themed.h4 sx={{ variant: "text.truncate" }}>{item.title}</Themed.h4>
-          <Themed.p sx={{ variant: "text.truncate" }}>
-            {item.authors[0]}
-          </Themed.p>
-        </div>
-        <div
+    <Button
+      onClick={() => removeFromCart(item)}
+      sx={{ bg: "background", p: 0, color: "primary", border: "none" }}
+    >
+      eliminar
+    </Button>
+  )
+}
+
+export function CartItem({ item }) {
+  return (
+    <Card sx={{ display: "flex", mb: 3 }}>
+      <Grid columns={["1fr 2fr"]} gap={0}>
+        <Link to={"/catalogo/" + slugify(item.title.toLowerCase())}>
+          <GatsbyImage
+            image={item.image.gatsbyImageData}
+            alt={item.title}
+            objectFit="cover"
+            sx={{ height: 160 }}
+          />
+        </Link>
+        <Box
           sx={{
+            p: 3,
             display: "flex",
-            alignItems: "center",
+            flexDirection: "column",
             justifyContent: "space-between",
+            width: "100%",
+            position: "relative",
           }}
         >
-          {/* <QuantityPicker
-              decrement={() => decrement(item)}
-              quantity={item.quantity}
-              increment={() => increment(item)}
-            /> */}
-          <Themed.p
+          <div>
+            <Themed.h4 sx={{ variant: "text.truncate" }}>
+              <Themed.a
+                as={Link}
+                to={"/catalogo/" + slugify(item.title.toLowerCase())}
+              >
+                {item.title}
+              </Themed.a>
+            </Themed.h4>
+            <Themed.p sx={{ variant: "text.truncate" }}>
+              {item.authors[0]}
+            </Themed.p>
+          </div>
+          <Flex sx={{ alignItems: "center", justifyContent: "space-between" }}>
+            <QuantityPicker item={item} />
+            {"x"}
+            <Themed.p sx={{ my: 0, fontSize: 2 }}>${item.price}</Themed.p>
+          </Flex>
+          <div
             sx={{
-              variant: "text.truncate",
+              display: "flex",
+              alignItems: "baseline",
+              justifyContent: "space-between",
             }}
           >
-            ${item.price * item.quantity}
-          </Themed.p>
-        </div>
-      </Box>
-      <button
-        onClick={() => removeFromCart(item)}
-        sx={{
-          position: "absolute",
-          right: 0,
-          top: 0,
-          lineHeight: 1,
-          cursor: "pointer",
-          bg: "text",
-          color: "background",
-          border: "none",
-        }}
-      >
-        <small>X</small>
-      </button>
+            <RemoveButton item={item} />
+            <Themed.p
+              sx={{
+                variant: "text.truncate",
+              }}
+            >
+              ${item.price * item.quantity}
+            </Themed.p>
+          </div>
+        </Box>
+      </Grid>
     </Card>
   )
 }
