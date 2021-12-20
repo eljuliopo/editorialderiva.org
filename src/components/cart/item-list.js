@@ -55,10 +55,10 @@ export function CartItem({ item }) {
               {item.authors[0]}
             </Themed.p>
           </div>
-          <Flex sx={{ alignItems: "center", justifyContent: "space-between" }}>
-            <QuantityPicker item={item} />
-            {"x"}
+          <Flex sx={{ alignItems: "center" }}>
             <Themed.p sx={{ my: 0, fontSize: 2 }}>${item.price}</Themed.p>
+            <Themed.p sx={{ my: 0, fontSize: 1, mx: 2 }}>x</Themed.p>
+            <QuantityPicker sx={{ fontSize: 2 }} item={item} />
           </Flex>
           <div
             sx={{
