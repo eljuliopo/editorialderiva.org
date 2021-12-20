@@ -33,6 +33,10 @@ export default function QtyPicker({ item, ...props }) {
           borderBottom: ({ colors }) => `solid 1px ${colors.primary}`,
           borderTop: ({ colors }) => `solid 1px ${colors.primary}`,
           borderLeft: ({ colors }) => `solid 1px ${colors.primary}`,
+          fontSize: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         {item.quantity}
