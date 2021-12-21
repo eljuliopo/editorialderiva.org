@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Box, Label, Input, Button } from "theme-ui"
 import { useState } from "react"
-import { useCart } from "../../store"
+import { useCart } from "../store"
 
 export default function CheckoutForm() {
   const { cart } = useCart()

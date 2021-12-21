@@ -4,9 +4,9 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import slugify from "slugify"
 // import { parseAuthors } from "../utils"
-import QuantityPicker from "../quantity-picker"
+import QuantityPicker from "./quantity-picker"
 
-import { useCart } from "../../store"
+import { useCart } from "../store"
 
 function RemoveButton({ item }) {
   const { removeFromCart } = useCart()

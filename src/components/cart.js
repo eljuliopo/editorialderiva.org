@@ -5,7 +5,7 @@ import React from "react"
 import ItemList from "./item-list"
 import CheckoutForm from "./checkout-form"
 
-import { useCart } from "../../store"
+import { useCart } from "../store"
 
 export function sumTotal(cart) {
   return cart.reduce((acc, { quantity, price }) => acc + quantity * price, 0)
