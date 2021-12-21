@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
         currency: "CLP",
         paymentMethod: 9,
         urlConfirmation: `${process.env.BASE_URL}/api/confirmation`,
-        urlReturn: `${process.env.BASE_URL}/api/return`,
+        urlReturn: `${process.env.BASE_URL}/estado?orden=${commerceOrder}`,
         email,
         amount,
         subject: items
