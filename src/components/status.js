@@ -5,11 +5,12 @@ import { jsx, Box, Label, Input, Button } from "theme-ui"
 export default function Status(props) {
   const urlSearchParams = new URLSearchParams(props.location.search)
   const params = Object.fromEntries(urlSearchParams.entries())
-  const [order, setOrder] = React.useState(params.order || "")
+  const [order, setOrder] = React.useState(params.orden || "")
   const handleSubmit = e => {
-    e.preventDefault()
+    e?.preventDefault()
     console.log(order)
   }
+  React.useEffect(() => handleSubmit())
   return (
     <Box
       as="form"
