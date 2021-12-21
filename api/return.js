@@ -9,6 +9,7 @@ const flowClient = new FlowApi({
 module.exports = async (req, res) => {
   try {
     const { token } = req.body
+    console.log(req.body)
     const payment = await flowClient.send("payment/getStatus", { token }, "GET")
     const isPaid = payment.status === 2
     res.status(301)
