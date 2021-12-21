@@ -8,11 +8,13 @@ const flowClient = new FlowApi({
 
 module.exports = async (req, res) => {
   try {
-    const { token } = req.body
-    const payment = await flowClient.send("payment/getStatus", { token }, "GET")
-    res.status(301)
-    res.setHeader("Location", `/estado?orden=${payment.flowOrder}`)
-    res.end()
+    const { order } = req.body
+    const payment = await flowClient.send(
+      "payment/getStatusByFlowOrder",
+      { flowOrder: order },
+      "GET"
+    )
+    res.json({ ...payment })
   } catch (err) {
     res.status(500)
     res.json({ error: err.toString() })
