@@ -1,12 +1,13 @@
 /** @jsx jsx */
+import { Link } from "gatsby"
 import React from "react"
-import { jsx, Box, Label, Input, Button } from "theme-ui"
+import { jsx, Box, Label, Input, Button, Themed } from "theme-ui"
 
 export default function Status(props) {
   const urlSearchParams = new URLSearchParams(props.location.search)
   const params = Object.fromEntries(urlSearchParams.entries())
   const [order, setOrder] = React.useState(params.orden || "")
-  const [orderData, setOrderData] = React.useState({})
+  const [orderData, setOrderData] = React.useState()
   const handleSubmit = async e => {
     e?.preventDefault()
     try {
@@ -23,18 +24,20 @@ export default function Status(props) {
       console.error(error)
     }
   }
-  React.useEffect(() => handleSubmit())
+  React.useEffect(() => (order !== "" ? handleSubmit() : null), [])
   return (
     <React.Fragment>
-      <pre>{JSON.stringify(orderData, null, 2)}</pre>
-      <Box
-        as="form"
-        sx={{
-          variant: "forms.primary",
-          position: "relative",
-        }}
-        onSubmit={handleSubmit}
-      >
+      {/* <pre>{JSON.stringify(orderData, null, 2)}</pre> */}
+      {orderData?.status === 2 && (
+        <Themed.p>
+          🥳 Tu orden{" "}
+          <Themed.a as={Link} to={`/estado?orden=${orderData.flowOrder}`}>
+            n° {orderData.flowOrder}
+          </Themed.a>{" "}
+          ha sido procesada de manera exitosa.
+        </Themed.p>
+      )}
+      <Box as="form" sx={{ variant: "forms.primary" }} onSubmit={handleSubmit}>
         <Label htmlFor="order">Orden n°:</Label>
         <Input
           type="text"
@@ -44,7 +47,7 @@ export default function Status(props) {
           onChange={e => setOrder(e.target.value)}
           required
         />
-        <Button>Consultar</Button>
+        <Button type="submit">Consultar</Button>
       </Box>
     </React.Fragment>
   )
