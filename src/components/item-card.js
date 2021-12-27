@@ -3,6 +3,7 @@ import { jsx, Themed, Card, Button } from "theme-ui"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import slugify from "slugify"
+import { toast } from "react-hot-toast"
 // import { parseAuthors } from "../utils"
 import { useCart } from "../store"
 
@@ -81,7 +82,10 @@ export default function Item({ data }) {
         <Themed.p sx={{ variant: "text.truncate" }}>${data.price}</Themed.p>
         <Button
           sx={{ width: "100%" }}
-          onClick={() => addToCart({ ...data, quantity: 1 })}
+          onClick={() => {
+            addToCart({ ...data, quantity: 1 })
+            toast.success(data.title + " agregado al carro")
+          }}
         >
           Agregar al carro
         </Button>

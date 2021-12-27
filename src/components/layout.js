@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, Container, Themed } from "theme-ui"
 import { useStaticQuery, graphql } from "gatsby"
+import { Toaster } from "react-hot-toast"
 
 import Header from "./header"
 
@@ -19,6 +20,7 @@ const Layout = ({ children }) => {
 
   return (
     <div sx={{ variant: "layout.root" }}>
+      <Toaster />
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <main sx={{ variant: "layout.main" }}>
         <Container>{children}</Container>

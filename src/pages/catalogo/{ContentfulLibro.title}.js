@@ -3,7 +3,7 @@ import { jsx, Themed, Button } from "theme-ui"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-
+import { toast } from "react-hot-toast"
 import Layout from "../../components/layout"
 import Seo from "../../components/seo"
 
@@ -37,7 +37,14 @@ export default function Libro(props) {
         {current.height} x {current.width} cm.
       </Themed.p>
       <Themed.p>{current.year}</Themed.p>
-      <Button onClick={() => addToCart(current)}>Agregar al carro</Button>
+      <Button
+        onClick={() => {
+          addToCart(current)
+          toast.success(current.title)
+        }}
+      >
+        Agregar al carro
+      </Button>
     </Layout>
   )
 }
