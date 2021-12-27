@@ -21,30 +21,56 @@ export default function Libro(props) {
         image={current.image.gatsbyImageData.images.fallback.src}
         author={current.authors}
       />
-      <GatsbyImage
-        image={current.image.gatsbyImageData}
-        alt={current.title}
-        objectFit="contain"
-        sx={{ mx: "auto", cursor: "pointer" }}
-      />
-      <Themed.h2>{current.title}</Themed.h2>
-      <Themed.h5 sx={{ mt: 1 }}>por {current.authors[0]}</Themed.h5>
-      <Themed.h3>${current.price}</Themed.h3>
-      <MDXRenderer>{current.description.childMdx.body}</MDXRenderer>
-      <Themed.p>ISBN: {current.isbn} </Themed.p>
-      <Themed.p>{current.pages} páginas</Themed.p>
-      <Themed.p>
-        {current.height} x {current.width} cm.
-      </Themed.p>
-      <Themed.p>{current.year}</Themed.p>
-      <Button
-        onClick={() => {
-          addToCart(current)
-          toast.success(current.title)
+      <div
+        sx={{
+          flexWrap: "wrap",
+          display: "flex",
         }}
       >
-        Agregar al carro
-      </Button>
+        <div
+          sx={{
+            p: 3,
+            flexGrow: 1,
+            flexBasis: 320,
+            display: "flex",
+            alignItems: "flex-start",
+          }}
+        >
+          <GatsbyImage
+            image={current.image.gatsbyImageData}
+            alt={current.title}
+            objectFit="contain"
+            sx={{ mx: "auto" }}
+          />
+        </div>
+        <div
+          sx={{
+            p: 3,
+            flexGrow: 99999,
+            flexBasis: 0,
+            minWidth: 320,
+          }}
+        >
+          <Themed.h2>{current.title}</Themed.h2>
+          <Themed.h5 sx={{ mt: 1 }}>por {current.authors[0]}</Themed.h5>
+          <Themed.h3>${current.price}</Themed.h3>
+          <MDXRenderer>{current.description.childMdx.body}</MDXRenderer>
+          <Themed.p>ISBN: {current.isbn} </Themed.p>
+          <Themed.p>{current.pages} páginas</Themed.p>
+          <Themed.p>
+            {current.height} x {current.width} cm.
+          </Themed.p>
+          <Themed.p>{current.year}</Themed.p>
+          <Button
+            onClick={() => {
+              addToCart(current)
+              toast.success(current.title)
+            }}
+          >
+            Agregar al carro
+          </Button>
+        </div>
+      </div>
     </Layout>
   )
 }
