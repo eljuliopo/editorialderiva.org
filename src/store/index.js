@@ -35,6 +35,7 @@ export const useCart = create(
           const index = cart.findIndex(c => c.contentful_id === i.contentful_id)
           cart[index].quantity = i.quantity - 1
         }),
+      clearCart: () => set(() => ({ cart: [] })),
     }),
     {
       name: "shopping-cart",

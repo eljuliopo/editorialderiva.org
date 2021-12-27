@@ -83,12 +83,13 @@ export function CartItem({ item }) {
 }
 
 export default function CartItemList() {
-  const { cart } = useCart()
+  const { cart, clearCart } = useCart()
   return (
     <div>
       {cart.map(item => (
         <CartItem key={item.contentful_id} item={item} />
       ))}
+      <Button onClick={clearCart}>Vaciar carro</Button>
     </div>
   )
 }
