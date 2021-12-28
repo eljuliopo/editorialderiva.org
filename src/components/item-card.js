@@ -66,6 +66,7 @@ export default function Item({ data }) {
           alt={data.title}
           overlay={data.title}
           objectFit="cover"
+          sx={{ height: "auto" }}
         />
       </Link>
 
