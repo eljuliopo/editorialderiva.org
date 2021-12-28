@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast"
 
 import Header from "./header"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, ...props }) => {
   const data = useStaticQuery(
     graphql`
       query SiteTitleQuery {
@@ -17,11 +17,13 @@ const Layout = ({ children }) => {
       }
     `
   )
-
   return (
     <div sx={{ variant: "layout.root" }}>
       <Toaster />
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header
+        isHome={props.path === "/"}
+        siteTitle={data.site.siteMetadata?.title || `Title`}
+      />
       <main sx={{ variant: "layout.main" }}>
         <Container>{children}</Container>
       </main>

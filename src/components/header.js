@@ -2,14 +2,10 @@
 import { jsx, Container, Themed, Flex } from "theme-ui"
 import { Link } from "gatsby"
 
-const Header = ({ siteTitle }) => (
-  <header
-    sx={{
-      variant: "layout.header",
-    }}
-  >
+const Header = ({ siteTitle, isHome }) => (
+  <header sx={{ variant: "layout.header" }}>
     <Container>
-      <Themed.h1 sx={{ mb: 0 }}>
+      <Themed.h1 sx={{ mb: 0, fontSize: isHome ? 5 : 3 }}>
         <Themed.a as={Link} to="/">
           {siteTitle}
         </Themed.a>
