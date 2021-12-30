@@ -8,6 +8,8 @@
     "@fontsource/lato": "^4.5.0",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "@react-three/drei": "^8.3.1",
+    "@react-three/fiber": "^7.0.24",
     "@theme-ui/presets": "^0.12.1",
     "@theme-ui/prism": "^0.12.1",
     "flowcl-node-api-client": "^1.1.5",
@@ -28,6 +30,8 @@
     "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.1.1",
     "theme-ui": "^0.12.1",
+    "three": "^0.136.0",
+    "three-stdlib": "^2.6.2",
     "zustand": "^3.6.7"
   },
   "devDependencies": {

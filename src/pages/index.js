@@ -8,11 +8,17 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import ItemCard from "../components/item-card"
 import olitas from "../images/sea2.gif"
+import Water from "../components/water"
 
 const Hero = ({ site }) => {
   return (
     <div style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
-      <img
+      <div
+        sx={{ zIndex: -1, position: "absolute", width: "100%", height: "100%" }}
+      >
+        <Water />
+      </div>
+      {/* <img
         sx={{
           position: "absolute",
           objectFit: "cover",
@@ -23,7 +29,7 @@ const Hero = ({ site }) => {
         }}
         src={olitas}
         alt="editorial deriva"
-      />
+      /> */}
       <div
         sx={{
           height: "100%",
