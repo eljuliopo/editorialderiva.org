@@ -2,6 +2,7 @@
 import { jsx, Container, Themed, Flex } from "theme-ui"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import Headroom from "react-headroom"
 
 const Logo = ({ title }) => (
   <Themed.a as={Link} to="/">
@@ -60,14 +61,16 @@ const Header = () => {
     `
   )
   return (
-    <header sx={{ variant: "layout.header" }}>
-      <Container>
-        <Flex sx={{ alignItems: "center", justifyContent: "space-between" }}>
-          <Logo title={site.siteMetadata.title} />
-          <HeaderMenu />
-        </Flex>
-      </Container>
-    </header>
+    <Headroom>
+      <header sx={{ variant: "layout.header" }}>
+        <Container>
+          <Flex sx={{ alignItems: "center", justifyContent: "space-between" }}>
+            <Logo title={site.siteMetadata.title} />
+            <HeaderMenu />
+          </Flex>
+        </Container>
+      </header>
+    </Headroom>
   )
 }
 

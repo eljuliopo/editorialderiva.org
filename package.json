@@ -24,6 +24,7 @@
     "gatsby-transformer-sharp": "^4.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-headroom": "^3.2.0",
     "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.1.1",
     "theme-ui": "^0.12.1",
