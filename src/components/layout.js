@@ -1,29 +1,14 @@
 /** @jsx jsx */
 import { jsx, Container, Themed } from "theme-ui"
-import { useStaticQuery, graphql } from "gatsby"
 import { Toaster } from "react-hot-toast"
 
 import Header from "./header"
 
 const Layout = ({ children, ...props }) => {
-  const data = useStaticQuery(
-    graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `
-  )
   return (
     <div sx={{ variant: "layout.root" }}>
       <Toaster />
-      <Header
-        isHome={props.path === "/"}
-        siteTitle={data.site.siteMetadata?.title || `Title`}
-      />
+      <Header isHome={props.path === "/"} />
       <main sx={{ variant: "layout.main" }}>
         <Container>{children}</Container>
       </main>

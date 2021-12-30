@@ -6,7 +6,7 @@ import "@fontsource/lato/400.css"
 
 const theme = merge(base, {
   colors: {
-    primary: "#6d2f9c",
+    primary: "#000",
     secondary: "#ffae1e",
   },
   fontSizes: [12, 14, 16, 22, 24, 32, 48, 64, 96],
@@ -19,7 +19,9 @@ const theme = merge(base, {
     body: 400,
   },
   sizes: {
-    // container: 1280,
+    container: 1360,
+    thin: 960,
+    blog: 540,
   },
   layout: {
     root: { display: "flex", flexDirection: "column", minHeight: "100vh" },
@@ -97,6 +99,7 @@ const theme = merge(base, {
   },
   styles: {
     a: {
+      fontWeight: "bold",
       textDecoration: "none",
       ":hover": {
         color: "secondary",

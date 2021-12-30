@@ -29,7 +29,7 @@ export default function Libro(props) {
       >
         <div
           sx={{
-            p: 3,
+            pr: [null, 3],
             flexGrow: 1,
             flexBasis: 320,
             display: "flex",
@@ -45,7 +45,6 @@ export default function Libro(props) {
         </div>
         <div
           sx={{
-            p: 3,
             flexGrow: 99999,
             flexBasis: 0,
             minWidth: 320,
