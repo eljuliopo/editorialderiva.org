@@ -22,27 +22,27 @@ const HeaderMenu = () => (
   <Flex sx={{ alignItems: "center" }}>
     <Themed.h4 sx={{ my: 0, display: ["none", "initial"] }}>
       <Themed.a as={Link} to="/nosotros">
-        nosotros
+        Nosotros
       </Themed.a>
     </Themed.h4>
     <Themed.h4 sx={{ my: 0, display: ["none", "initial"], ml: 3 }}>
       <Themed.a as={Link} to="/catalogo">
-        catalogo
+        Catálogo
       </Themed.a>
     </Themed.h4>
     <Themed.h4 sx={{ my: 0, display: ["none", "initial"], ml: 3 }}>
       <Themed.a as={Link} to="/contacto">
-        contacto
+        Contacto
       </Themed.a>
     </Themed.h4>
     <Themed.h4 sx={{ my: 0, ml: 3 }}>
       <Themed.a as={Link} to="/carrito">
-        carrito
+        Carrito
       </Themed.a>
     </Themed.h4>
     <Themed.h4 sx={{ my: 0, display: [null, "none"], ml: 3 }}>
       <Themed.a as={Link} to={false}>
-        menu
+        Menu
       </Themed.a>
     </Themed.h4>
   </Flex>
