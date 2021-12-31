@@ -7,7 +7,7 @@ import "@fontsource/lato/400.css"
 const theme = merge(base, {
   colors: {
     primary: "#000",
-    secondary: "#ffae1e",
+    secondary: "#eee",
   },
   fontSizes: [12, 14, 16, 22, 24, 32, 48, 64, 96],
   fonts: {
