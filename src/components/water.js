@@ -7,7 +7,7 @@ import {
   useLoader,
   useFrame,
 } from "@react-three/fiber"
-import { OrbitControls, Sky } from "@react-three/drei"
+import { Sky, OrbitControls } from "@react-three/drei"
 import { Water } from "three-stdlib"
 
 extend({ Water })
@@ -38,34 +38,18 @@ function Ocean() {
   return <water ref={ref} args={[geom, config]} rotation-x={-Math.PI / 2} />
 }
 
-// function Box() {
-//   const ref = useRef()
-//   useFrame((state, delta) => {
-//     ref.current.position.y = 10 + Math.sin(state.clock.elapsedTime) * 20
-//     ref.current.rotation.x =
-//       ref.current.rotation.y =
-//       ref.current.rotation.z +=
-//         delta
-//   })
-//   return (
-//     <mesh ref={ref} scale={20}>
-//       <boxGeometry />
-//       <meshStandardMaterial />
-//     </mesh>
-//   )
-// }
-
 export default function App() {
   return (
-    <Canvas camera={{ position: [0, 5, 100], fov: 55, near: 1, far: 20000 }}>
-      <pointLight position={[100, 100, 100]} />
-      <pointLight position={[-100, -100, -100]} />
+    <Canvas camera={{ position: [0, 80, -100], fov: 55, near: 1, far: 20000 }}>
       <Suspense fallback={null}>
         <Ocean />
-        {/* <Box /> */}
       </Suspense>
-      <Sky scale={1000} sunPosition={[500, 150, -1000]} turbidity={0.1} />
-      <OrbitControls />
+      <Sky scale={1000} sunPosition={[500, 150, 1000]} turbidity={0.1} />
+      <OrbitControls
+        maxPolarAngle={Math.PI / 3}
+        minPolarAngle={1}
+        enableZoom={false}
+      />
     </Canvas>
   )
 }

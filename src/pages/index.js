@@ -7,29 +7,16 @@ import slugify from "slugify"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import ItemCard from "../components/item-card"
-import olitas from "../images/sea2.gif"
+// import olitas from "../images/sea2.gif"
 import Water from "../components/water"
+import BlogRoll from "../components/blogroll"
 
 const Hero = ({ site }) => {
   return (
     <div style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
-      <div
-        sx={{ zIndex: -1, position: "absolute", width: "100%", height: "100%" }}
-      >
+      <div sx={{ position: "absolute", width: "100%", height: "100%" }}>
         <Water />
       </div>
-      {/* <img
-        sx={{
-          position: "absolute",
-          objectFit: "cover",
-          width: "100%",
-          height: "100%",
-          zIndex: -1,
-          filter: "invert(1) contrast(1.1) grayscale(1)",
-        }}
-        src={olitas}
-        alt="editorial deriva"
-      /> */}
       <div
         sx={{
           height: "100%",
@@ -51,8 +38,13 @@ const Hero = ({ site }) => {
             placeholder="none"
             // formats={["auto", "webp", "avif"]}
           />
-          <Themed.p>{site.siteMetadata.description}</Themed.p>
-          <Button onClick={() => navigate("/catalogo")}>
+          <Themed.p sx={{ zIndex: 10, position: "relative" }}>
+            {site.siteMetadata.description}
+          </Themed.p>
+          <Button
+            sx={{ zIndex: 10, position: "relative" }}
+            onClick={() => navigate("/catalogo")}
+          >
             Nuestro catálogo
           </Button>
         </div>
@@ -93,64 +85,20 @@ const NewPosts = ({ items }) => {
     <div sx={{ py: 4 }}>
       <Themed.h1 sx={{ textAlign: "center" }}>Visita nuestro blog</Themed.h1>
       <Themed.p sx={{ textAlign: "center" }}>
-        Kick off your next, great Gatsby project with this default starter.
+        Kick off your next, great Gatsby project with this default{" "}
+        <Themed.a as={Link} to="/blog">
+          blog
+        </Themed.a>
+        .
       </Themed.p>
-      <ul
-        sx={{
-          listStyle: "none",
-          mx: "auto",
-          px: 3,
-          py: 4,
-          maxWidth: "blog",
-        }}
-      >
-        {items.map(post => {
-          post.slug = "/blog/" + slugify(post.title.toLowerCase())
-          return (
-            <li
-              key={post.id}
-              sx={{
-                mb: 5,
-              }}
-            >
-              <Themed.h2
-                sx={{
-                  m: 0,
-                }}
-              >
-                <Link
-                  to={post.slug}
-                  sx={{
-                    color: "inherit",
-                    textDecoration: "none",
-                    ":hover,:focus": {
-                      color: "primary",
-                      textDecoration: "underline",
-                    },
-                  }}
-                >
-                  {post.title}
-                </Link>
-              </Themed.h2>
-              <small sx={{ fontWeight: "bold" }}>{post.date}</small>
-              <Themed.p sx={{ mt: 3, position: "relative" }}>
-                {post.description}
-                <Themed.a
-                  as={Link}
-                  to={post.slug}
-                  sx={{
-                    position: "absolute",
-                    right: 0,
-                    bottom: -4,
-                  }}
-                >
-                  Ir al artículo.
-                </Themed.a>
-              </Themed.p>
-            </li>
-          )
-        })}
-      </ul>
+      <BlogRoll items={items} />
+      <Themed.p sx={{ textAlign: "center" }}>
+        Revisa todas nuestras publicaciones{" "}
+        <Themed.a as={Link} to="/blog">
+          aquí
+        </Themed.a>
+        .
+      </Themed.p>
     </div>
   )
 }
