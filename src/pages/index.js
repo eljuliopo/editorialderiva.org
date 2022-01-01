@@ -34,15 +34,17 @@ const Hero = ({ site }) => {
             quality={100}
             formats={["AUTO", "WEBP", "AVIF"]}
             alt={site.siteMetadata.title}
-            // sx={{ my: 3 }}
+            sx={{ userSelect: "none" }}
             placeholder="none"
             // formats={["auto", "webp", "avif"]}
           />
-          <Themed.p sx={{ zIndex: 10, position: "relative" }}>
+          <Themed.p
+            sx={{ zIndex: 10, position: "relative", userSelect: "none" }}
+          >
             {site.siteMetadata.description}
           </Themed.p>
           <Button
-            sx={{ zIndex: 10, position: "relative" }}
+            sx={{ zIndex: 10, position: "relative", userSelect: "none" }}
             onClick={() => navigate("/catalogo")}
           >
             Nuestro catálogo

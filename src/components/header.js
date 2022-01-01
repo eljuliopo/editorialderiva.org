@@ -12,7 +12,7 @@ const Logo = ({ title }) => (
       quality={100}
       formats={["AUTO", "WEBP", "AVIF"]}
       alt={title}
-      sx={{ my: 3 }}
+      sx={{ my: 3, userSelect: "none" }}
       placeholder="none"
     />
   </Themed.a>
@@ -20,27 +20,33 @@ const Logo = ({ title }) => (
 
 const HeaderMenu = () => (
   <Flex sx={{ alignItems: "center" }}>
-    <Themed.h4 sx={{ my: 0, display: ["none", "initial"] }}>
+    <Themed.h4 sx={{ userSelect: "none", my: 0, display: ["none", "initial"] }}>
       <Themed.a as={Link} to="/nosotros">
         Nosotros
       </Themed.a>
     </Themed.h4>
-    <Themed.h4 sx={{ my: 0, display: ["none", "initial"], ml: 3 }}>
+    <Themed.h4
+      sx={{ userSelect: "none", my: 0, display: ["none", "initial"], ml: 3 }}
+    >
       <Themed.a as={Link} to="/catalogo">
         Catálogo
       </Themed.a>
     </Themed.h4>
-    <Themed.h4 sx={{ my: 0, display: ["none", "initial"], ml: 3 }}>
+    <Themed.h4
+      sx={{ userSelect: "none", my: 0, display: ["none", "initial"], ml: 3 }}
+    >
       <Themed.a as={Link} to="/contacto">
         Contacto
       </Themed.a>
     </Themed.h4>
-    <Themed.h4 sx={{ my: 0, ml: 3 }}>
+    <Themed.h4 sx={{ userSelect: "none", my: 0, ml: 3 }}>
       <Themed.a as={Link} to="/carrito">
         Carrito
       </Themed.a>
     </Themed.h4>
-    <Themed.h4 sx={{ my: 0, display: [null, "none"], ml: 3 }}>
+    <Themed.h4
+      sx={{ userSelect: "none", my: 0, display: [null, "none"], ml: 3 }}
+    >
       <Themed.a as={Link} to={false}>
         Menu
       </Themed.a>

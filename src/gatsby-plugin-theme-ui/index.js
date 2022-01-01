@@ -98,6 +98,11 @@ const theme = merge(base, {
     },
   },
   styles: {
+    root: {
+      ".headroom-wrapper": {
+        zIndex: 1000,
+      },
+    },
     a: {
       fontWeight: "bold",
       textDecoration: "none",
