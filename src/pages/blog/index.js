@@ -11,7 +11,10 @@ export default function Blog(props) {
     <Layout {...props}>
       <Box sx={{ maxWidth: "blog", mx: "auto" }}>
         <Themed.h1>Blog</Themed.h1>
-        <Themed.p>a</Themed.p>
+        <Themed.p>
+          This barebones starter ships with the main Gatsby configuration files
+          you might need.
+        </Themed.p>
       </Box>
       <BlogRoll items={posts} />
     </Layout>
