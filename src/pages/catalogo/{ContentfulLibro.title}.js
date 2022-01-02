@@ -62,7 +62,7 @@ export default function Libro(props) {
           <Themed.p>{current.year}</Themed.p>
           <Button
             onClick={() => {
-              addToCart(current)
+              addToCart({ ...current, quantity: 1 })
               toast.success(current.title)
             }}
           >
