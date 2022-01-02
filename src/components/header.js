@@ -33,6 +33,10 @@ const menuItems = [
     name: "Contacto",
     to: "/contacto",
   },
+  {
+    name: "Blog",
+    to: "/blog",
+  },
 ]
 
 function Mobile() {
