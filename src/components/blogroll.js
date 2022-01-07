@@ -23,39 +23,18 @@ export default function Blog({ items }) {
               mb: 5,
             }}
           >
-            <Themed.h2
-              sx={{
-                m: 0,
-              }}
-            >
-              <Link
-                to={post.slug}
-                sx={{
-                  color: "inherit",
-                  textDecoration: "none",
-                  ":hover,:focus": {
-                    color: "primary",
-                    textDecoration: "underline",
-                  },
-                }}
-              >
+            <Themed.h2 sx={{ m: 0 }}>
+              <Themed.a as={Link} to={post.slug}>
                 {post.title}
-              </Link>
+              </Themed.a>
             </Themed.h2>
             <small sx={{ fontWeight: "bold" }}>{post.date}</small>
             <Themed.p sx={{ mt: 3, position: "relative" }}>
-              {post.description}
-              <Themed.a
-                as={Link}
-                to={post.slug}
-                sx={{
-                  position: "absolute",
-                  right: 0,
-                  bottom: -4,
-                }}
-              >
-                Ir al artículo.
+              {post.description}{" "}
+              <Themed.a as={Link} to={post.slug}>
+                Leer artículo
               </Themed.a>
+              .
             </Themed.p>
           </li>
         )

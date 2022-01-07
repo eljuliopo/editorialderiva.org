@@ -142,7 +142,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulBlogPost(limit: 3, sort: { order: DESC, fields: date }) {
+    allContentfulBlogPost(limit: 2, sort: { order: DESC, fields: date }) {
       nodes {
         id
         title
