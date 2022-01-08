@@ -29,10 +29,10 @@ const menuItems = [
     name: "Catálogo",
     to: "/catalogo",
   },
-  {
-    name: "Contacto",
-    to: "/contacto",
-  },
+  // {
+  //   name: "Contacto",
+  //   to: "/contacto",
+  // },
   {
     name: "Blog",
     to: "/blog",
