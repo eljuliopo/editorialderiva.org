@@ -102,6 +102,9 @@ const theme = merge(base, {
       ".headroom-wrapper": {
         zIndex: 1000,
       },
+      ".react-share__ShareButton": {
+        marginRight: 2,
+      },
     },
     a: {
       fontWeight: "bold",
@@ -112,6 +115,13 @@ const theme = merge(base, {
     },
     p: {
       fontSize: 3,
+    },
+    blockquote: {
+      mx: 3,
+      bg: "muted",
+      fontStyle: "italic",
+      px: 3,
+      py: 1,
     },
   },
 })
