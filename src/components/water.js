@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import React, { Suspense, useRef, useMemo } from "react"
 import { Canvas, extend, useLoader, useFrame } from "@react-three/fiber"
-import { Sky, OrbitControls } from "@react-three/drei"
+import { Sky, OrbitControls, PerspectiveCamera } from "@react-three/drei"
 import { Water } from "three-stdlib"
 
 extend({ Water })
@@ -32,18 +32,22 @@ function Ocean() {
   return <water ref={ref} args={[geom, config]} rotation-x={-Math.PI / 2} />
 }
 
+function Cam(props) {
+  useFrame(({ camera, clock }) => {
+    camera.position.y += Math.sin(clock.getElapsedTime()) * 0.01
+  })
+  return <PerspectiveCamera makeDefault {...props} />
+}
+
 export default function App() {
   return (
-    <Canvas camera={{ position: [0, 80, -100], fov: 55, near: 1, far: 20000 }}>
+    <Canvas>
+      <Cam {...{ position: [0, 5, 10], fov: 55, near: 1, far: 20000 }} />
       <Suspense fallback={null}>
         <Ocean />
       </Suspense>
       <Sky scale={1000} sunPosition={[500, 150, 1000]} turbidity={0.1} />
-      <OrbitControls
-        maxPolarAngle={Math.PI / 3}
-        minPolarAngle={1}
-        enableZoom={false}
-      />
+      <OrbitControls maxPolarAngle={Math.PI / 2.5} enableZoom={false} />
     </Canvas>
   )
 }
