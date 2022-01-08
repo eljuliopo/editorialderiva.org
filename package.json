@@ -29,6 +29,7 @@
     "react-headroom": "^3.2.0",
     "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.1.1",
+    "react-share": "^4.4.0",
     "theme-ui": "^0.12.1",
     "three": "^0.136.0",
     "three-stdlib": "^2.6.2",
