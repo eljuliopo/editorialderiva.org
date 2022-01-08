@@ -2,7 +2,6 @@
 import { jsx, Themed, Grid, Box, Button } from "theme-ui"
 import { graphql, navigate, Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import slugify from "slugify"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"

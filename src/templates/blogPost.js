@@ -53,7 +53,6 @@ function ShareButtons({ title, url, twitterHandle, tags }) {
 export default function BlogPost(props) {
   const post = props.data.contentfulBlogPost
   const { prev, next } = props.pageContext
-  console.log(props)
   return (
     <Layout {...props}>
       <Seo title={post.title} />
@@ -61,13 +60,9 @@ export default function BlogPost(props) {
         <Themed.h1 sx={{ mb: 0 }}>{post.title}</Themed.h1>
         <small sx={{ fontWeight: "bold" }}>{post.date}</small>
         <MDXRenderer>{post.content.childMdx.body}</MDXRenderer>
+
         <Themed.h2>¿Te gustó lo que leíste? Compártelo</Themed.h2>
-        <ShareButtons
-          title={post.title}
-          url={props.location.href}
-          // twitterHandle={twitterHandle}
-          //   tags={tags}
-        />
+        <ShareButtons title={post.title} url={props.location.href} />
 
         <Themed.h2>Otros artículos de interés</Themed.h2>
         {next && (

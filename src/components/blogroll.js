@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Themed, Box } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 import { Link } from "gatsby"
 import slugify from "slugify"
 
