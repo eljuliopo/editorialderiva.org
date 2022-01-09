@@ -20,7 +20,7 @@ const Logo = ({ title }) => (
   </Themed.a>
 )
 
-const menuItems = [
+export const menuItems = [
   {
     name: "Nosotros",
     to: "/nosotros",
