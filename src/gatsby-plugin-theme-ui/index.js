@@ -1,15 +1,14 @@
-import base from "@theme-ui/preset-base"
+import { base as preset } from "@theme-ui/presets"
 import { merge } from "theme-ui"
 
 import "@fontsource/lato/700.css"
 import "@fontsource/lato/400.css"
 
-const theme = merge(base, {
+const theme = merge(preset, {
   colors: {
-    primary: "#000",
-    secondary: "#eee",
+    primary: "#111",
+    secondary: "#999",
   },
-  fontSizes: [12, 14, 16, 22, 24, 32, 48, 64, 96],
   fonts: {
     heading: `Lato`,
     body: `Lato`,
@@ -26,8 +25,8 @@ const theme = merge(base, {
   layout: {
     root: { display: "flex", flexDirection: "column", minHeight: "100vh" },
     header: { width: "100%", bg: "background" },
-    main: { width: "100%", flex: "1 1 auto", pb: 3 },
-    footer: { width: "100%", py: 3 },
+    main: { width: "100%", flex: "1 1 auto", pb: 5 },
+    footer: { width: "100%", py: 3, bg: "text", color: "background" },
     container: { maxWidth: "container", mx: "auto", px: 3 },
   },
   grids: {
@@ -52,7 +51,7 @@ const theme = merge(base, {
       // mx: "auto",
     },
     label: {
-      fontSize: 2,
+      fontSize: 1,
       fontWeight: "bold",
     },
     input: {
@@ -69,6 +68,7 @@ const theme = merge(base, {
       fontFamily: "monospace",
       borderColor: "gray",
       mb: 3,
+      resize: "none",
       "&:focus": {
         borderColor: "primary",
         boxShadow: t => `0 0 0 2px ${t.colors.primary}`,
@@ -96,6 +96,17 @@ const theme = merge(base, {
         color: "primary",
       },
     },
+    inverted: {
+      border: theme => `1px solid ${theme.colors.background}`,
+      borderRadius: 0,
+      cursor: "pointer",
+      bg: "background",
+      color: "primary",
+      "&:hover": {
+        bg: "primary",
+        color: "background",
+      },
+    },
   },
   styles: {
     root: {
@@ -106,6 +117,9 @@ const theme = merge(base, {
         marginRight: 2,
       },
     },
+    button: {
+      fontFamily: "body",
+    },
     a: {
       fontWeight: "bold",
       textDecoration: "none",
@@ -115,6 +129,7 @@ const theme = merge(base, {
     },
     p: {
       fontSize: 3,
+      // textAlign: "justify",
     },
     blockquote: {
       mx: 3,
