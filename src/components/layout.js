@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import { jsx, Container, Themed } from "theme-ui"
+import { jsx, Container } from "theme-ui"
 import { Toaster } from "react-hot-toast"
 
 import Header from "./header"
+import Footer from "./footer"
 
 const Layout = ({ children, ...props }) => {
   return (
@@ -12,12 +13,7 @@ const Layout = ({ children, ...props }) => {
       <main sx={{ variant: "layout.main" }}>
         <Container>{children}</Container>
       </main>
-      <footer sx={{ variant: "layout.footer" }}>
-        <Container>
-          © {new Date().getFullYear()}, Built with{" "}
-          <Themed.a href="https://www.gatsbyjs.com">Gatsby</Themed.a>
-        </Container>
-      </footer>
+      <Footer />
     </div>
   )
 }
