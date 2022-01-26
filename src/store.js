@@ -42,3 +42,12 @@ export const useCart = create(
     }
   )
 )
+
+export const useMenu = create(set => ({
+  isMenuOpen: false,
+  toggleMenu: () => set(({ isMenuOpen }) => ({ isMenuOpen: !isMenuOpen })),
+  isHeaderVisible: true,
+  toggleHeader: toggle => set(() => ({ isHeaderVisible: toggle })),
+  isModalOpen: false,
+  toggleModal: toggle => set(() => ({ isModalOpen: toggle })),
+}))
