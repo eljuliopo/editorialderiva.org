@@ -11,7 +11,7 @@ export default function CatalogPage({ data, ...props }) {
   return (
     <Layout {...props}>
       <Seo title={"Nuestro catálogo"} />
-      <Themed.h1>nuestro catálogo</Themed.h1>
+      <Themed.h1>Nuestro Catálogo</Themed.h1>
       <Grid variant="primary">
         {nodes.map(item => (
           <ItemCard key={item.contentful_id} data={item} />
