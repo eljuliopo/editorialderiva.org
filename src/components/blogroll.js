@@ -10,17 +10,17 @@ export default function Blog({ items }) {
         listStyle: "none",
         mx: "auto",
         px: 0,
-        py: 4,
+        // py: 4,
         maxWidth: "blog",
       }}
     >
-      {items.map(post => {
+      {items.map((post, i) => {
         post.slug = "/blog/" + slugify(post.title.toLowerCase())
         return (
           <li
             key={post.id}
             sx={{
-              mb: 5,
+              mb: i === items.length - 1 ? null : 5,
             }}
           >
             <Themed.h2 sx={{ m: 0 }}>
