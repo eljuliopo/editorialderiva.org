@@ -61,10 +61,12 @@ export default function BlogPost(props) {
         <small sx={{ fontWeight: "bold" }}>{post.date}</small>
         <MDXRenderer>{post.content.childMdx.body}</MDXRenderer>
 
-        <Themed.h2>¿Te gustó lo que leíste? Compártelo</Themed.h2>
+        <Themed.h2 sx={{ mt: 4 }}>
+          ¿Te gustó lo que leíste? Compártelo
+        </Themed.h2>
         <ShareButtons title={post.title} url={props.location.href} />
 
-        <Themed.h2>Otros artículos de interés</Themed.h2>
+        <Themed.h2 sx={{ mt: 4 }}>También puede interesarte:</Themed.h2>
         {next && (
           <div>
             <Themed.h1 sx={{ mb: 0 }}>
