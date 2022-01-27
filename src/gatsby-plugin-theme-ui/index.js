@@ -24,14 +24,14 @@ const theme = merge(preset, {
   },
   layout: {
     root: { display: "flex", flexDirection: "column", minHeight: "100vh" },
-    header: { width: "100%", bg: "background" },
+    header: { width: "100%" },
     main: { width: "100%", flex: "1 1 auto", pb: 5 },
     footer: { width: "100%", py: 3, bg: "text", color: "background" },
     container: { maxWidth: "container", mx: "auto", px: 3 },
   },
   grids: {
     primary: {
-      gap: 5,
+      // gap: 5,
       gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
     },
   },

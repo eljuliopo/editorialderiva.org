@@ -1,14 +1,14 @@
 import * as THREE from "three"
-import React, { Suspense, useRef, useMemo } from "react"
-import { Canvas, extend, useLoader, useFrame } from "@react-three/fiber"
-import { Sky, OrbitControls, PerspectiveCamera } from "@react-three/drei"
+import React, { Suspense, useRef, useMemo, useState, useEffect } from "react"
+import { Canvas, extend, useThree, useLoader, useFrame } from "@react-three/fiber"
+import { Sky, PerspectiveCamera } from "@react-three/drei"
 import { Water } from "three-stdlib"
 
 extend({ Water })
 
 function Ocean() {
   const ref = useRef()
-  // const gl = useThree(state => state.gl)
+  const gl = useThree(state => state.gl)
   const waterNormals = useLoader(THREE.TextureLoader, "/waternormals.jpeg")
   waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping
   const geom = useMemo(() => new THREE.PlaneGeometry(10000, 10000), [])
@@ -22,32 +22,44 @@ function Ocean() {
       waterColor: 0x001e0f,
       distortionScale: 3.7,
       fog: false,
-      // format: gl.encoding,
+      format: gl.encoding,
     }),
     [waterNormals]
   )
-  useFrame(
-    (state, delta) => (ref.current.material.uniforms.time.value += delta)
-  )
+  useFrame((state, delta) => (ref.current.material.uniforms.time.value += delta))
   return <water ref={ref} args={[geom, config]} rotation-x={-Math.PI / 2} />
-}
-
-function Cam(props) {
-  useFrame(({ camera, clock }) => {
-    camera.position.y += Math.sin(clock.getElapsedTime()) * 0.01
-  })
-  return <PerspectiveCamera makeDefault {...props} />
 }
 
 export default function App() {
   return (
     <Canvas>
-      <Cam {...{ position: [0, 5, 10], fov: 55, near: 1, far: 20000 }} />
+      <Camera {...{ makeDefault: true, position: [0, 5, 5], fov: 55, near: 1, far: 20000 }} />
+      <pointLight position={[100, 100, 100]} />
+      <pointLight position={[-100, -100, -100]} />
       <Suspense fallback={null}>
         <Ocean />
       </Suspense>
-      <Sky scale={1000} sunPosition={[500, 150, 1000]} turbidity={0.1} />
-      <OrbitControls maxPolarAngle={Math.PI / 2.5} enableZoom={false} />
+      <Sky scale={1000} sunPosition={[500, 150, -1000]} turbidity={10} />
     </Canvas>
   )
+}
+
+function Camera(props) {
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const handleScroll = () => setScrollPosition(window.pageYOffset)
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
+  useFrame(({ camera, clock }) => {
+    camera.position.z = THREE.MathUtils.lerp(camera.position.z, scrollPosition * -0.5, 0.1) - 5
+    camera.position.y = Math.sin(clock.elapsedTime) + 16
+    camera.lookAt(0, 0, 0)
+  })
+
+  return <PerspectiveCamera {...props} />
 }

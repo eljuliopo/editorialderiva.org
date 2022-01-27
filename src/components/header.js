@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Container, Themed, Flex } from "theme-ui"
+import { jsx, Container, Themed, Flex, useThemeUI } from "theme-ui"
 import { Link } from "gatsby"
 import Headroom from "react-headroom"
 import React from "react"
@@ -101,9 +101,14 @@ function Desktop() {
 }
 
 const Header = () => {
+  const { theme } = useThemeUI()
+  const [bg, setBg] = React.useState("none")
+  const onPin = a => setBg(theme.colors.background)
+  const onUnpin = a => setBg("none")
+  const onUnfix = a => setBg("none")
   return (
-    <Headroom>
-      <header sx={{ variant: "layout.header" }}>
+    <Headroom onPin={onPin} onUnpin={onUnpin} onUnfix={onUnfix}>
+      <header sx={{ variant: "layout.header", transition: "all, .8s", bg }}>
         <Container sx={{ variant: "layout.container" }}>
           <Flex sx={{ alignItems: "center", justifyContent: "space-between" }}>
             <Themed.a as={Link} to="/">
