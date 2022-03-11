@@ -17,7 +17,7 @@ export const menuItems = [
     to: "/catalogo",
   },
   {
-    name: "Blog",
+    name: "Notas",
     to: "/blog",
   },
 ]
@@ -112,7 +112,7 @@ const Header = () => {
         <Container sx={{ variant: "layout.container" }}>
           <Flex sx={{ alignItems: "center", justifyContent: "space-between" }}>
             <Themed.a as={Link} to="/">
-              <Logo sx={{ width: 120, my: 3 }} color="black" />
+              <Logo sx={{ width: 150, my: 3 }} color="black" />
             </Themed.a>
             <Desktop />
             <Mobile />

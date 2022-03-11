@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Themed } from "theme-ui"
+import { jsx, Themed, Divider } from "theme-ui"
 import { Link } from "gatsby"
 import slugify from "slugify"
 
@@ -31,11 +31,12 @@ export default function Blog({ items }) {
             <small sx={{ fontWeight: "bold" }}>{post.date}</small>
             <Themed.p sx={{ mt: 3, position: "relative" }}>
               {post.description}{" "}
-              <Themed.a as={Link} to={post.slug}>
-                Leer artículo
-              </Themed.a>
-              .
             </Themed.p>
+            <Themed.a as={Link} to={post.slug} >
+                Leer artículo
+            </Themed.a>
+            <Divider />
+           
           </li>
         )
       })}

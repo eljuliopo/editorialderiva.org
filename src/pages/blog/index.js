@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx, Themed, Box } from "theme-ui"
 import { graphql } from "gatsby"
-
 import Layout from "../../components/layout"
 import BlogRoll from "../../components/blogroll"
 
@@ -10,11 +9,7 @@ export default function Blog(props) {
   return (
     <Layout {...props}>
       <Box sx={{ maxWidth: "blog", mx: "auto" }}>
-        <Themed.h1>Blog</Themed.h1>
-        <Themed.p>
-          This barebones starter ships with the main Gatsby configuration files
-          you might need.
-        </Themed.p>
+        <Themed.h1 sx={{textAlign:'center'}}>Notas</Themed.h1>
       </Box>
       <BlogRoll items={posts} />
     </Layout>
