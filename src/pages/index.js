@@ -32,12 +32,23 @@ const Hero = ({ site }) => {
       >
         <div sx={{ height: "100%", width: "100%", display: "flex", p: 2 }}>
           <div sx={{ my: 100, textAlign: "center", maxWidth: 540, mx: "auto" }}>
+            <Themed.h1
+                sx={{
+                  zIndex: 10,
+                  position: "relative",
+                  userSelect: "none",
+                  color: "primary",
+                }}
+              >
+                {site.siteMetadata.title} 
+                
+              </Themed.h1>
             <Themed.h3
               sx={{
                 zIndex: 10,
                 position: "relative",
                 userSelect: "none",
-                color: "background",
+                color: "primary",
               }}
             >
               {site.siteMetadata.description}
@@ -45,9 +56,9 @@ const Hero = ({ site }) => {
             </Themed.h3>
             <Themed.h5
               sx={{
-                color:"background",
+                color:"primary",
               }}>
-              {site.siteMetadata.location}
+              desde {site.siteMetadata.location} con 🖤 
             </Themed.h5>
             <Button
               sx={{
