@@ -1,8 +1,6 @@
 /** @jsx jsx */
 import { jsx, Themed, Grid, Box, Button, useThemeUI, Divider } from "theme-ui"
 import { graphql, navigate, Link } from "gatsby"
-
-
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import ItemCard from "../components/item-card"
@@ -34,7 +32,6 @@ const Hero = ({ site }) => {
       >
         <div sx={{ height: "100%", width: "100%", display: "flex", p: 2 }}>
           <div sx={{ my: 100, textAlign: "center", maxWidth: 540, mx: "auto" }}>
-            
             <Themed.h3
               sx={{
                 zIndex: 10,

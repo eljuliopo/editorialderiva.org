@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx, Themed, Box } from "theme-ui"
 import { graphql } from "gatsby"
-
 import Layout from "../../components/layout"
 import BlogRoll from "../../components/blogroll"
 

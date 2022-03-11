@@ -13,7 +13,6 @@ import { StaticImage } from "gatsby-plugin-image"
 import Form from "./form"
 import SocialIcons from "./social-icons"
 import Logo from "./logo"
-
 import { menuItems } from "./header"
 
 export default function Footer() {
@@ -105,7 +104,6 @@ export default function Footer() {
       </Container> */}
       <Container sx={{ display: "flex", flexDirection: "column" }}>
         {/* <AnchorLink to="/#index" sx={{ textAlign: "center" }}> */}
-        
         <StaticImage
           src="../images/icons/deriva-boat.png"
           width={40}

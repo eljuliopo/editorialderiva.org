@@ -31,8 +31,6 @@ export default function Blog({ items }) {
             <small sx={{ fontWeight: "bold" }}>{post.date}</small>
             <Themed.p sx={{ mt: 3, position: "relative" }}>
               {post.description}{" "}
-              
-              
             </Themed.p>
             <Themed.a as={Link} to={post.slug} >
                 Leer artículo

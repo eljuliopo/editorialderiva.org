@@ -16,8 +16,6 @@ import {
   TwitterIcon,
   WhatsappShareButton,
   WhatsappIcon,
-  RedditShareButton,
-  RedditIcon,
 } from "react-share"
 
 import { useCart } from "../../store"
@@ -28,7 +26,6 @@ function ShareButtons({ title, url, twitterHandle, tags }) {
       <FacebookShareButton url={url}>
         <FacebookIcon size={30} round={true} />
       </FacebookShareButton>
-
       <TwitterShareButton
         url={url}
         title={title}
@@ -37,15 +34,9 @@ function ShareButtons({ title, url, twitterHandle, tags }) {
       >
         <TwitterIcon size={30} round={true} />
       </TwitterShareButton>
-
       <TelegramShareButton url={url}>
         <TelegramIcon size={30} round={true} />
       </TelegramShareButton>
-
-      <RedditShareButton url={url} title={title}>
-        <RedditIcon size={30} round={true} />
-      </RedditShareButton>
-
       <WhatsappShareButton url={url} title={title}>
         <WhatsappIcon size={30} round={true} />
       </WhatsappShareButton>
@@ -69,8 +60,7 @@ export default function Libro(props) {
         sx={{
           flexWrap: "wrap",
           display: "flex",
-        }}
-      >
+        }}>
         <div
           sx={{
             pr: [null, 3],
@@ -78,8 +68,7 @@ export default function Libro(props) {
             flexBasis: 320,
             display: "flex",
             alignItems: "flex-start",
-          }}
-        >
+          }}>
           <GatsbyImage
             image={current.image.gatsbyImageData}
             alt={current.title}
@@ -92,8 +81,7 @@ export default function Libro(props) {
             flexGrow: 99999,
             flexBasis: 0,
             minWidth: 320,
-          }}
-        >
+          }}>
           <Themed.h2>{current.title}</Themed.h2>
           <Themed.h3 sx={{ mt: 1 }}>{current.authors[0]} © {current.year}</Themed.h3>
           <Themed.h5>
@@ -102,7 +90,6 @@ export default function Libro(props) {
             ISBN: {current.isbn}
             <br />
             Formato: {current.height} x {current.width} cm.
-
           </Themed.h5>
           <Themed.h3>Valor impreso: <b>${current.price}</b></Themed.h3>
           <Box sx={{ bg: "#E8E8E8", p: 4, marginBottom: 4 }}>
