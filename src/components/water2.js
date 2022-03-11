@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import React, { Suspense, useRef, useMemo, useState, useEffect } from "react"
 import { Canvas, extend, useThree, useLoader, useFrame } from "@react-three/fiber"
-import { Sky, PerspectiveCamera } from "@react-three/drei"
+import { Sky, PerspectiveCamera, Stars } from "@react-three/drei"
 import { Water } from "three-stdlib"
 
 extend({ Water })
@@ -33,13 +33,15 @@ function Ocean() {
 export default function App() {
   return (
     <Canvas>
-      <Camera {...{ makeDefault: true, position: [5, 1, 1], fov: 20, near: 2, far: 4000 }} />
+      <Camera {...{ makeDefault: true, position: [10, 10, 10], fov: 10, near: 2, far: 4000 }} />
       <pointLight position={[100, 100, 100]} />
       <pointLight position={[-100, -100, -100]} />
       <Suspense fallback={null}>
         <Ocean />
       </Suspense>
-      <Sky scale={500} sunPosition={[100, 500, -100]} turbidity={400} />
+      <Sky scale={5000} sunPosition={[100, 500, -100]} turbidity={100} />
+      <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade />
+
       
 
     </Canvas>

@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { jsx, Themed, Grid, Box, Button, useThemeUI } from "theme-ui"
+import { jsx, Themed, Grid, Box, Button, useThemeUI, Divider } from "theme-ui"
 import { graphql, navigate, Link } from "gatsby"
 
+
 import Layout from "../components/layout"
-import Logo from "../components/logo"
 import Seo from "../components/seo"
 import ItemCard from "../components/item-card"
 import BlogRoll from "../components/blogroll"
@@ -32,10 +32,10 @@ const Hero = ({ site }) => {
           position: "relative",
         }}
       >
-        <div sx={{ height: "100%", width: "100%", display: "flex", p: 3 }}>
-          <div sx={{ my: "auto", textAlign: "center", maxWidth: 540, mx: "auto" }}>
-            <Logo sx={{ position: "relative", maxWidth: 320 }} color={theme.colors.background} />
-            <Themed.p
+        <div sx={{ height: "100%", width: "100%", display: "flex", p: 2 }}>
+          <div sx={{ my: 100, textAlign: "center", maxWidth: 540, mx: "auto" }}>
+            
+            <Themed.h3
               sx={{
                 zIndex: 10,
                 position: "relative",
@@ -44,7 +44,14 @@ const Hero = ({ site }) => {
               }}
             >
               {site.siteMetadata.description}
-            </Themed.p>
+              
+            </Themed.h3>
+            <Themed.h5
+              sx={{
+                color:"background",
+              }}>
+              {site.siteMetadata.location}
+            </Themed.h5>
             <Button
               sx={{
                 zIndex: 10,
@@ -66,9 +73,10 @@ const Hero = ({ site }) => {
               }}
               onClick={() => navigate("/catalogo")}
             >
-              Nuestro catálogo
+              Catálogo de libros
             </Button>
           </div>
+          
         </div>
       </div>
     </React.Fragment>
@@ -78,8 +86,7 @@ const Hero = ({ site }) => {
 const NewItems = ({ items }) => {
   return (
     <div sx={{ mt: 5 }}>
-      <Themed.h1>Lo último de nuestro catálogo</Themed.h1>
-      <Themed.p>Kick off your next, great Gatsby project with this default starter.</Themed.p>
+      <Themed.h1 id="last" sx={{textAlign:'center'}}>Últimas publicaciones</Themed.h1>
       <div sx={{ textAlign: "center" }}>
         <Grid variant="primary" sx={{ maxWidth: 960, mx: "auto" }}>
           {items.map(item => (
@@ -91,34 +98,29 @@ const NewItems = ({ items }) => {
               <Themed.a as={Link} to="/catalogo">
                 nuestro catálogo
               </Themed.a>
-              .
             </Themed.p>
+            <Divider />
           </Box>
         </Grid>
       </div>
     </div>
+    
   )
 }
 
 const NewPosts = ({ items }) => {
   return (
     <div sx={{ mt: 5 }}>
-      <Themed.h1 sx={{ textAlign: "center" }}>Visita nuestro blog</Themed.h1>
-      <Themed.p sx={{ textAlign: "center" }}>
-        Kick off your next, great Gatsby project with this default{" "}
-        <Themed.a as={Link} to="/blog">
-          blog
-        </Themed.a>
-        .
-      </Themed.p>
+      <Divider variant='string' sx={{ marginX: 500 }} />
+      <Themed.h1 sx={{ textAlign: "center" }}>Notas</Themed.h1>
       <BlogRoll items={items} />
-      <Themed.p sx={{ textAlign: "center" }}>
-        Revisa todas nuestras publicaciones{" "}
+      <Themed.p sx={{ textAlign: "center", mt: "10" }}>
+        Todas las publicaciones{" "}
         <Themed.a as={Link} to="/blog">
-          aquí
+          acá
         </Themed.a>
-        .
       </Themed.p>
+      <Divider variant='string' sx={{ marginX: 500 }} />
     </div>
   )
 }
@@ -141,6 +143,7 @@ export const query = graphql`
       siteMetadata {
         title
         description
+        location
       }
     }
     allContentfulLibro(limit: 3) {

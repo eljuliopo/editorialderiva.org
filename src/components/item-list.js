@@ -15,7 +15,7 @@ function RemoveButton({ item }) {
       onClick={() => removeFromCart(item)}
       sx={{ bg: "background", p: 0, color: "primary", border: "none" }}
     >
-      eliminar
+      Eliminar
     </Button>
   )
 }

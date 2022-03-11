@@ -10,7 +10,6 @@ import {
 } from "theme-ui"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-
 import Form from "./form"
 import SocialIcons from "./social-icons"
 import Logo from "./logo"
@@ -31,7 +30,8 @@ export default function Footer() {
   )
   const { theme } = useThemeUI()
   return (
-    <footer sx={{ variant: "layout.footer" }}>
+    <footer sx={{ position: "relative", variant: "layout.footer" }}>
+      
       {/* <Container>
         <Grid columns={[1, 1, 3, 3]} sx={{ mb: 3 }}>
           <Box>
@@ -105,13 +105,14 @@ export default function Footer() {
       </Container> */}
       <Container sx={{ display: "flex", flexDirection: "column" }}>
         {/* <AnchorLink to="/#index" sx={{ textAlign: "center" }}> */}
+        
         <StaticImage
-          src="../images/deriva-icon.png"
-          width={50}
+          src="../images/icons/deriva-boat.png"
+          width={40}
           quality={100}
           formats={["AUTO", "WEBP", "AVIF"]}
           // alt={data.site.siteMetadata.title}
-          sx={{ mx: "auto" }}
+          sx={{ mx: "auto", zIndex: 10 }}
         />
         {/* </AnchorLink> */}
         <Themed.p
