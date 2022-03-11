@@ -2,8 +2,8 @@ require("dotenv").config()
 module.exports = {
   siteMetadata: {
     title: `Editorial Deriva`,
-    description: `Poesía, narrativa & miscelánea`,
-    location: `Villa Alegre, Región del Maule, Chile`,
+    description: `Poesía & Memoria`,
+    location: `Villa Alegre`,
     image: `/deriva-icon.png`,
     author: `@piducancore`,
     siteUrl: `https://editorialderiva.org/`,
