@@ -1,7 +1,9 @@
+require("dotenv").config()
 module.exports = {
   siteMetadata: {
     title: `Editorial Deriva`,
-    description: `Somos una editorial de poesía y literatura contemporánea con base en Villa Alegre, Chile.`,
+    description: `Poesía & Memoria`,
+    location: `Villa Alegre`,
     image: `/deriva-icon.png`,
     author: `@piducancore`,
     siteUrl: `https://editorialderiva.org/`,

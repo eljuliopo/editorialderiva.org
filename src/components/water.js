@@ -1,8 +1,9 @@
 import * as THREE from "three"
 import React, { Suspense, useRef, useMemo, useState, useEffect } from "react"
 import { Canvas, extend, useThree, useLoader, useFrame } from "@react-three/fiber"
-import { Sky, PerspectiveCamera } from "@react-three/drei"
+import { Sky, PerspectiveCamera, Stars } from "@react-three/drei"
 import { Water } from "three-stdlib"
+import { TorusBufferGeometry } from "three"
 
 extend({ Water })
 
@@ -11,15 +12,15 @@ function Ocean() {
   const gl = useThree(state => state.gl)
   const waterNormals = useLoader(THREE.TextureLoader, "/waternormals.jpeg")
   waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping
-  const geom = useMemo(() => new THREE.PlaneGeometry(10000, 10000), [])
+  const geom = useMemo(() => new THREE.PlaneGeometry(2000, 2000), [])
   const config = useMemo(
     () => ({
       textureWidth: 512,
       textureHeight: 512,
       waterNormals,
       sunDirection: new THREE.Vector3(),
-      sunColor: 0xffffff,
-      waterColor: 0x001e0f,
+      sunColor: 0x000000,
+      waterColor: 0xffffff,
       distortionScale: 3.7,
       fog: false,
       format: gl.encoding,
@@ -33,13 +34,16 @@ function Ocean() {
 export default function App() {
   return (
     <Canvas>
-      <Camera {...{ makeDefault: true, position: [0, 5, 5], fov: 55, near: 1, far: 20000 }} />
+      <Camera {...{ makeDefault: true, position: [1, 1, 1], fov: 32, near: 1, far: 1000 }} />
       <pointLight position={[100, 100, 100]} />
       <pointLight position={[-100, -100, -100]} />
       <Suspense fallback={null}>
         <Ocean />
       </Suspense>
-      <Sky scale={1000} sunPosition={[500, 150, -1000]} turbidity={10} />
+      <Sky scale={500} sunPosition={[100, 500, -100]} turbidity={400} elevation={-100} azimuth={60} />
+      
+
+
     </Canvas>
   )
 }

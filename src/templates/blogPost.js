@@ -6,8 +6,8 @@ import slugify from "slugify"
 import {
   FacebookShareButton,
   FacebookIcon,
-  LinkedinShareButton,
-  LinkedinIcon,
+  TelegramShareButton,
+  TelegramIcon,
   TwitterShareButton,
   TwitterIcon,
   WhatsappShareButton,
@@ -23,7 +23,7 @@ function ShareButtons({ title, url, twitterHandle, tags }) {
   return (
     <div>
       <FacebookShareButton url={url}>
-        <FacebookIcon size={40} round={true} />
+        <FacebookIcon size={30} round={true} />
       </FacebookShareButton>
 
       <TwitterShareButton
@@ -32,19 +32,19 @@ function ShareButtons({ title, url, twitterHandle, tags }) {
         via={twitterHandle}
         hashtags={tags}
       >
-        <TwitterIcon size={40} round={true} />
+        <TwitterIcon size={30} round={true} />
       </TwitterShareButton>
 
-      <LinkedinShareButton url={url}>
-        <LinkedinIcon size={40} round={true} />
-      </LinkedinShareButton>
+      <TelegramShareButton url={url}>
+        <TelegramIcon size={30} round={true} />
+      </TelegramShareButton>
 
       <RedditShareButton url={url} title={title}>
-        <RedditIcon size={40} round={true} />
+        <RedditIcon size={30} round={true} />
       </RedditShareButton>
 
       <WhatsappShareButton url={url} title={title}>
-        <WhatsappIcon size={40} round={true} />
+        <WhatsappIcon size={30} round={true} />
       </WhatsappShareButton>
     </div>
   )
@@ -61,35 +61,35 @@ export default function BlogPost(props) {
         <small sx={{ fontWeight: "bold" }}>{post.date}</small>
         <MDXRenderer>{post.content.childMdx.body}</MDXRenderer>
 
-        <Themed.h2 sx={{ mt: 4 }}>
-          ¿Te gustó lo que leíste? Compártelo
-        </Themed.h2>
+        <Themed.h3 sx={{ mt: 4 }}>
+          ¿Te gustó lo que leíste?, compártelo :)
+        </Themed.h3>
         <ShareButtons title={post.title} url={props.location.href} />
 
-        <Themed.h2 sx={{ mt: 4 }}>También puede interesarte:</Themed.h2>
+        <Themed.h3 sx={{ mt: 4 }}>También podría interesarte:</Themed.h3>
         {next && (
           <div>
-            <Themed.h1 sx={{ mb: 0 }}>
+            <Themed.h2 sx={{ mb: 0 }}>
               <Themed.a
                 as={Link}
                 to={"/blog/" + slugify(next.title, { lower: true })}
               >
                 {next.title}
               </Themed.a>
-            </Themed.h1>
+            </Themed.h2>
             <small sx={{ mt: 0, fontWeight: "bold" }}>{next.date}</small>
           </div>
         )}
         {prev && (
           <div>
-            <Themed.h1 sx={{ mb: 0 }}>
+            <Themed.h2 sx={{ mb: 0 }}>
               <Themed.a
                 as={Link}
                 to={"/blog/" + slugify(prev.title, { lower: true })}
               >
                 {prev.title}
               </Themed.a>
-            </Themed.h1>
+            </Themed.h2>
             <small sx={{ mt: 0, fontWeight: "bold" }}>{prev.date}</small>
           </div>
         )}
