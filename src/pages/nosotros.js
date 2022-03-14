@@ -20,7 +20,7 @@ export default function Nosotros() {
         <Themed.h1>Nosotros</Themed.h1>
         <Themed.p><span role="img" aria-label="mano">Somos buena onda 👍</span></Themed.p>
         <Themed.p>
-          Nacimos desde un proyecto colectivo que se materializa el año 2019
+          Editorial Deriva es un proyecto colectivo que se materializa el año 2019
           en la comuna de <strong>Villa Alegre</strong>, región del Maule.
         </Themed.p>
         <Themed.p>

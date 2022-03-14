@@ -21,7 +21,7 @@ export default function Cart() {
           <CheckoutForm />
         </Grid>
       ) : (
-        <Themed.p>todavía no agregas nada a tu carrito.</Themed.p>
+        <Themed.p>🙄 Todavía no agregas nada a tu carrito.</Themed.p>
       )}
     </React.Fragment>
   )

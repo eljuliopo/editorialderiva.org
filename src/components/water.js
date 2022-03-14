@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import React, { Suspense, useRef, useMemo, useState, useEffect } from "react"
 import { Canvas, extend, useThree, useLoader, useFrame } from "@react-three/fiber"
-import { Sky, PerspectiveCamera, Stars } from "@react-three/drei"
+import { Sky, PerspectiveCamera, Stars, ContactShadows } from "@react-three/drei"
 import { Water } from "three-stdlib"
 import { TorusBufferGeometry } from "three"
 
@@ -40,7 +40,8 @@ export default function App() {
       <Suspense fallback={null}>
         <Ocean />
       </Suspense>
-      <Sky scale={500} sunPosition={[100, 500, -100]} turbidity={400} elevation={-100} azimuth={60} />
+      <Sky scale={500} sunPosition={[100, 500, -100]} turbidity={300} elevation={100} azimuth={10} />
+
       
 
 
