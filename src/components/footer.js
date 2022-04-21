@@ -105,7 +105,7 @@ export default function Footer() {
       <Container sx={{ display: "flex", flexDirection: "column" }}>
         {/* <AnchorLink to="/#index" sx={{ textAlign: "center" }}> */}
         <StaticImage
-          src="../images/icons/deriva-boat.png"
+          src="../images/icons/deriva-circle.svg"
           width={40}
           quality={100}
           formats={["AUTO", "WEBP", "AVIF"]}

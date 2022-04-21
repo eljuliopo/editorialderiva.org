@@ -23,7 +23,7 @@ export default function CatalogPage({ data, ...props }) {
 
 export const query = graphql`
   query LibrosQuery {
-    allContentfulLibro {
+    allContentfulLibro(sort: { order: DESC, fields: updatedAt }) {
       nodes {
         contentful_id
         id

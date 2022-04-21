@@ -62,7 +62,7 @@ export default function BlogPost(props) {
         <MDXRenderer>{post.content.childMdx.body}</MDXRenderer>
 
         <Themed.h3 sx={{ mt: 4 }}>
-          ¿Te gustó lo que leíste?, compártelo :)
+          ¿Te gustó lo que leíste?, compártelo 👇
         </Themed.h3>
         <ShareButtons title={post.title} url={props.location.href} />
 

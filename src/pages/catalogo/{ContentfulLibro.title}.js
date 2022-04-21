@@ -23,7 +23,7 @@ import { useCart } from "../../store"
 function ShareButtons({ title, url, twitterHandle, tags }) {
   return (
     <div>
-      <FacebookShareButton url={url}>
+      <FacebookShareButton url={url} title={title}>
         <FacebookIcon size={30} round={true} />
       </FacebookShareButton>
       <TwitterShareButton
@@ -34,7 +34,7 @@ function ShareButtons({ title, url, twitterHandle, tags }) {
       >
         <TwitterIcon size={30} round={true} />
       </TwitterShareButton>
-      <TelegramShareButton url={url}>
+      <TelegramShareButton url={url} title={title}>
         <TelegramIcon size={30} round={true} />
       </TelegramShareButton>
       <WhatsappShareButton url={url} title={title}>
