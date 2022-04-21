@@ -172,7 +172,7 @@ export const query = graphql`
         location
       }
     }
-    allContentfulLibro(limit: 3) {
+    allContentfulLibro(limit: 3, sort: { order: DESC, fields: updatedAt }) {
       nodes {
         contentful_id
         id
