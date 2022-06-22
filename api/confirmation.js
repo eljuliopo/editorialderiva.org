@@ -1,19 +1,50 @@
-const FlowApi = require("flowcl-node-api-client")
+import { WebpayPlus } from "transbank-sdk"
 
-const flowClient = new FlowApi({
-  apiKey: process.env.FLOW_API_KEY,
-  secretKey: process.env.FLOW_SECRET_KEY,
-  apiURL: process.env.FLOW_API_URL,
-})
+if (process.env.WPP_CC && process.env.WPP_KEY) {
+  WebpayPlus.configureForProduction(process.env.WPP_CC, process.env.WPP_KEY)
+} else {
+  WebpayPlus.configureForTesting()
+}
 
-module.exports = async (req, res) => {
-  try {
-    const { token } = req.body
-    const payment = await flowClient.send("payment/getStatus", { token }, "GET")
-    console.log(payment) // do whatever you want.
-    res.json({ status: "OK" })
-  } catch (err) {
-    res.status(500)
-    res.json({ error: err.toString() })
+export default async function handler(req, res) {
+  let params = req.method === "GET" ? req.query : req.body
+
+  let token = params.token_ws
+  let tbkToken = params.TBK_TOKEN
+  let tbkOrdenCompra = params.TBK_ORDEN_COMPRA
+  let tbkIdSesion = params.TBK_ID_SESION
+
+  let viewData = {
+    token,
+    tbkToken,
+    tbkOrdenCompra,
+    tbkIdSesion,
+  }
+  console.log(JSON.stringify(viewData))
+
+  if (token && !tbkToken) {
+    // NORMAL (solo llega token_ws, tanto si es un rechazo o una aprobación)
+    const { buy_order, status, response_code } = await new WebpayPlus.Transaction().commit(token)
+
+    if (response_code === 0 && status === "AUTHORIZED") {
+      // await sendMail({ ...payment.data, buy_order });
+    }
+    res.status(301)
+    res.setHeader("Location", `/estado?token=${token}`)
+    res.end()
+  } else {
+    if (!token && !tbkToken) {
+      // TIMEOUT (llegan TBK_ID_SESION y TBK_ORDEN_COMPRA)
+      // await updatePayment(tbkOrdenCompra, { status: "TIMED OUT" })
+    } else if (!token && tbkToken) {
+      // ABORTED (llegan TBK_TOKEN, TBK_ID_SESION, TBK_ORDEN_COMPRA)
+      // await updatePayment(tbkOrdenCompra, { status: "ABORTED" })
+    } else if (token && tbkToken) {
+      // INVALID (llega todos token_ws, TBK_TOKEN, TBK_ID_SESION, TBK_ORDEN_COMPRA)
+      // await updatePayment(tbkOrdenCompra, { status: "INVALID" })
+    }
+    res.status(301)
+    res.setHeader("Location", `/`)
+    res.end()
   }
 }

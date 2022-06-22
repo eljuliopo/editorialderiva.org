@@ -1,12 +1,11 @@
-const FlowApi = require("flowcl-node-api-client")
 const contentful = require("contentful")
-const { v4: uuidv4 } = require("uuid")
+const { WebpayPlus } = require("transbank-sdk")
 
-const flowClient = new FlowApi({
-  apiKey: process.env.FLOW_API_KEY,
-  secretKey: process.env.FLOW_SECRET_KEY,
-  apiURL: process.env.FLOW_API_URL,
-})
+if (process.env.WPP_CC && process.env.WPP_KEY) {
+  WebpayPlus.configureForProduction(process.env.WPP_CC, process.env.WPP_KEY)
+} else {
+  WebpayPlus.configureForTesting()
+}
 
 async function validateCart(cart) {
   const contentfulClient = contentful.createClient({
@@ -32,27 +31,18 @@ function sumTotal(cart) {
 
 module.exports = async (req, res) => {
   try {
-    const { email, cart } = req.body
-    const items = await validateCart(cart)
+    const items = await validateCart(req.body.cart)
+    const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1
+    const sessionId = "S-" + Math.floor(Math.random() * 10000) + 1
     const amount = sumTotal(items)
-    const commerceOrder = uuidv4() // -> '110ec58a-a0f2-4ac4-8393-c866d813b8d1'
-    const payment = await flowClient.send(
-      "payment/create",
-      {
-        commerceOrder,
-        currency: "CLP",
-        paymentMethod: 9,
-        urlConfirmation: `${process.env.BASE_URL}/api/confirmation`,
-        urlReturn: `${process.env.BASE_URL}/api/return`,
-        email,
-        amount,
-        subject: items
-          .map(({ title, quantity }) => quantity + " " + title)
-          .join(", "),
-      },
-      "POST"
-    )
-    res.json({ redirect: payment.url + "?token=" + payment.token })
+    const returnUrl = `${process.env.BASE_URL}/api/confirmation`
+
+    const createResponse = await new WebpayPlus.Transaction().create(buyOrder, sessionId, amount, returnUrl)
+
+    let token = createResponse.token
+    let url = createResponse.url
+
+    res.json({ redirect: url + "?token_ws=" + token })
   } catch (err) {
     res.status(500)
     res.json({ error: err.toString() })

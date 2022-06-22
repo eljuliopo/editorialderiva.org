@@ -1,22 +1,19 @@
-const FlowApi = require("flowcl-node-api-client")
+import { WebpayPlus } from "transbank-sdk"
 
-const flowClient = new FlowApi({
-  apiKey: process.env.FLOW_API_KEY,
-  secretKey: process.env.FLOW_SECRET_KEY,
-  apiURL: process.env.FLOW_API_URL,
-})
+if (process.env.WPP_CC && process.env.WPP_KEY) {
+  WebpayPlus.configureForProduction(process.env.WPP_CC, process.env.WPP_KEY)
+} else {
+  WebpayPlus.configureForTesting()
+}
 
-module.exports = async (req, res) => {
-  try {
-    const { order } = req.body
-    const payment = await flowClient.send(
-      "payment/getStatusByFlowOrder",
-      { flowOrder: order },
-      "GET"
-    )
-    res.json({ ...payment })
-  } catch (err) {
-    res.status(500)
-    res.json({ error: err.toString() })
+export default async function handler(req, res) {
+  const { token } = req.body
+  if (token) {
+    try {
+      const statusResponse = await new WebpayPlus.Transaction().status(token)
+      res.json({ token, ...statusResponse })
+    } catch (err) {
+      res.json({ error: "Invalid token." })
+    }
   }
 }
