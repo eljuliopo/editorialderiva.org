@@ -27,9 +27,9 @@ function CartIcon() {
   if (cart.length) {
     return (
       <Themed.h4 sx={{ userSelect: "none", my: 0, ml: ["auto", 3] }}>
-        <Themed.a as={Link} to="/carrito">
+        <Link to="/carrito" sx={t => t.styles.a}>
           Carrito
-        </Themed.a>
+        </Link>
       </Themed.h4>
     )
   }
@@ -46,11 +46,11 @@ function Mobile() {
           my: 0,
           display: [null, "none"],
           ml: 3,
+          cursor: "pointer",
         }}
+        onClick={toggleMenu}
       >
-        <Themed.a href="#" onClick={toggleMenu}>
-          Menu
-        </Themed.a>
+        Menu
       </Themed.h4>
       <div
         sx={{
@@ -67,9 +67,9 @@ function Mobile() {
       >
         {menuItems.map(({ name, to }, idx) => (
           <Themed.h4 key={idx}>
-            <Themed.a as={Link} to={to} onClick={toggleMenu}>
+            <Link to={to} onClick={toggleMenu} sx={t => t.styles.a}>
               {name}
-            </Themed.a>
+            </Link>
           </Themed.h4>
         ))}
       </div>
@@ -90,9 +90,9 @@ function Desktop() {
             ml: idx > 0 ? 3 : 0,
           }}
         >
-          <Themed.a as={Link} to={to}>
+          <Link to={to} sx={t => t.styles.a}>
             {name}
-          </Themed.a>
+          </Link>
         </Themed.h4>
       ))}
       <CartIcon />
@@ -111,9 +111,9 @@ const Header = () => {
       <header sx={{ variant: "layout.header", transition: "all, .8s", bg }}>
         <Container sx={{ variant: "layout.container" }}>
           <Flex sx={{ alignItems: "center", justifyContent: "space-between" }}>
-            <Themed.a as={Link} to="/">
+            <Link to="/" sx={t => ({ ...t.styles.a, mr: "auto" })}>
               <Logo sx={{ width: 150, my: 3 }} color="black" />
-            </Themed.a>
+            </Link>
             <Desktop />
             <Mobile />
           </Flex>

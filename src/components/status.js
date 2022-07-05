@@ -23,7 +23,6 @@ export default function Status(props) {
       console.error(error)
     }
   }
-  React.useEffect(() => (token !== "" ? handleSubmit() : null), [])
   return (
     <React.Fragment>
       {statusResponse?.response_code === 0 && statusResponse?.status === "AUTHORIZED" ? <Themed.p>🥳 Tu orden ha sido procesada de manera exitosa.</Themed.p> : null}

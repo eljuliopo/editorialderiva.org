@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Themed, Grid, Box, Button, useThemeUI, Divider, IconButton } from "theme-ui"
+import { jsx, Themed, Grid, Box, Button, Divider, IconButton } from "theme-ui"
 import { graphql, navigate, Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -10,7 +10,6 @@ import React from "react"
 import scrollTo from "gatsby-plugin-smoothscroll"
 
 const Hero = ({ site }) => {
-  const { theme } = useThemeUI()
   return (
     <React.Fragment>
       <div
@@ -34,16 +33,15 @@ const Hero = ({ site }) => {
         <div sx={{ height: "100%", width: "100%", display: "flex", p: 2 }}>
           <div sx={{ my: 100, textAlign: "center", maxWidth: 540, mx: "auto" }}>
             <Themed.h1
-                sx={{
-                  zIndex: 10,
-                  position: "relative",
-                  userSelect: "none",
-                  color: "primary",
-                }}
-              >
-                {site.siteMetadata.title} 
-                
-              </Themed.h1>
+              sx={{
+                zIndex: 10,
+                position: "relative",
+                userSelect: "none",
+                color: "primary",
+              }}
+            >
+              {site.siteMetadata.title}
+            </Themed.h1>
             <Themed.h3
               sx={{
                 zIndex: 10,
@@ -53,13 +51,13 @@ const Hero = ({ site }) => {
               }}
             >
               {site.siteMetadata.description}
-              
             </Themed.h3>
             <Themed.h5
               sx={{
-                color:"primary",
-              }}>
-              desde {site.siteMetadata.location} con 🖤 
+                color: "primary",
+              }}
+            >
+              desde {site.siteMetadata.location} con 🖤
             </Themed.h5>
             <Button
               sx={{
@@ -86,23 +84,24 @@ const Hero = ({ site }) => {
             </Button>
             <div sx={{ textAlign: "center", mx: "auto" }}>
               <IconButton
-                  onClick={() => scrollTo('#lastbooks')}
-                  smooth={true}
-                  offset={50} duration={500} delay={1000}
-                  sx={{
-                    zIndex: 10,
-                    position: "relative",
-                    userSelect: "none",
-                    m: 2,
-                    my: 40,
-                  }}
-                  >
-                  <svg sx={{ fill: 'text', height: '100px', width: '100px'}} viewBox="0 0 448 512">
-                    <path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/>
-                  </svg>
+                onClick={() => scrollTo("#lastbooks")}
+                offset={50}
+                duration={500}
+                delay={1000}
+                sx={{
+                  zIndex: 10,
+                  position: "relative",
+                  userSelect: "none",
+                  m: 2,
+                  my: 40,
+                }}
+              >
+                <svg sx={{ fill: "text", height: "100px", width: "100px" }} viewBox="0 0 448 512">
+                  <path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z" />
+                </svg>
               </IconButton>
+            </div>
           </div>
-          </div>         
         </div>
       </div>
     </React.Fragment>
@@ -112,7 +111,9 @@ const Hero = ({ site }) => {
 const NewItems = ({ items }) => {
   return (
     <div sx={{ mt: 5 }}>
-      <Themed.h1 id='lastbooks' sx={{textAlign:'center'}}>Últimas publicaciones</Themed.h1>
+      <Themed.h1 id="lastbooks" sx={{ textAlign: "center" }}>
+        Últimas publicaciones
+      </Themed.h1>
       <div sx={{ textAlign: "center" }}>
         <Grid variant="primary" sx={{ maxWidth: 960, mx: "auto" }}>
           {items.map(item => (
@@ -121,32 +122,31 @@ const NewItems = ({ items }) => {
           <Box sx={{ gridColumn: [null, 2, null, 4], display: "flex" }}>
             <Themed.p sx={{ m: "auto" }}>
               Esto y más en{" "}
-              <Themed.a as={Link} to="/catalogo">
+              <Link to="/catalogo" sx={t => t.styles.a}>
                 nuestro catálogo
-              </Themed.a>
+              </Link>
             </Themed.p>
             <Divider />
           </Box>
         </Grid>
       </div>
     </div>
-    
   )
 }
 
 const NewPosts = ({ items }) => {
   return (
     <div sx={{ mt: 5 }}>
-      <Divider variant='string' sx={{ marginX: 500 }} />
+      <Divider variant="string" sx={{ marginX: 500 }} />
       <Themed.h1 sx={{ textAlign: "center" }}>Notas</Themed.h1>
       <BlogRoll items={items} />
       <Themed.p sx={{ textAlign: "center", mt: "10" }}>
         Todas las notas{" "}
-        <Themed.a as={Link} to="/blog">
-          acá 👈 
-        </Themed.a>
+        <Link to="/blog" sx={t => t.styles.a}>
+          acá 👈
+        </Link>
       </Themed.p>
-      <Divider variant='string' sx={{ marginX: 500 }} />
+      <Divider variant="string" sx={{ marginX: 500 }} />
     </div>
   )
 }

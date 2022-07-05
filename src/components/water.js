@@ -1,15 +1,13 @@
 import * as THREE from "three"
 import React, { Suspense, useRef, useMemo, useState, useEffect } from "react"
-import { Canvas, extend, useThree, useLoader, useFrame } from "@react-three/fiber"
-import { Sky, PerspectiveCamera, Stars, ContactShadows } from "@react-three/drei"
+import { Canvas, extend, useLoader, useFrame } from "@react-three/fiber"
+import { Sky, PerspectiveCamera } from "@react-three/drei"
 import { Water } from "three-stdlib"
-import { TorusBufferGeometry } from "three"
 
 extend({ Water })
 
 function Ocean() {
   const ref = useRef()
-  const gl = useThree(state => state.gl)
   const waterNormals = useLoader(THREE.TextureLoader, "/waternormals.jpeg")
   waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping
   const geom = useMemo(() => new THREE.PlaneGeometry(2000, 2000), [])
@@ -23,7 +21,6 @@ function Ocean() {
       waterColor: 0xffffff,
       distortionScale: 3.7,
       fog: false,
-      format: gl.encoding,
     }),
     [waterNormals]
   )
@@ -41,10 +38,6 @@ export default function App() {
         <Ocean />
       </Suspense>
       <Sky scale={500} sunPosition={[100, 500, -100]} turbidity={300} elevation={100} azimuth={10} />
-
-      
-
-
     </Canvas>
   )
 }
