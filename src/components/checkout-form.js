@@ -18,7 +18,7 @@ export default function CheckoutForm() {
   const handleSubmit = async event => {
     event.preventDefault()
     try {
-      let response = await fetch("/api/create-payment", {
+      let response = await fetch("/api/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cart, ...state }),

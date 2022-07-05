@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
     const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1
     const sessionId = "S-" + Math.floor(Math.random() * 10000) + 1
     const amount = sumTotal(items)
-    const returnUrl = `${process.env.BASE_URL}/api/confirmation`
+    const returnUrl = `${process.env.BASE_URL}/api/commit`
 
     const createResponse = await new WebpayPlus.Transaction().create(buyOrder, sessionId, amount, returnUrl)
 
