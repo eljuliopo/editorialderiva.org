@@ -24,13 +24,10 @@ export default async function handler(req, res) {
 
   if (token && !tbkToken) {
     // NORMAL (solo llega token_ws, tanto si es un rechazo o una aprobación)
-    const { buy_order, status, response_code } = await new WebpayPlus.Transaction().commit(token)
-
-    if (response_code === 0 && status === "AUTHORIZED") {
-      // await sendMail({ ...payment.data, buy_order });
-    }
+    const commitResponse = await new WebpayPlus.Transaction().commit(token)
+    const encoded = Buffer.from(JSON.stringify(commitResponse)).toString("base64")
     res.status(301)
-    res.setHeader("Location", `/estado?token=${token}`)
+    res.setHeader("Location", `/resultado/${encoded}`)
     res.end()
   } else {
     if (!token && !tbkToken) {
