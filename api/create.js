@@ -1,5 +1,6 @@
 const contentful = require("contentful")
 const { WebpayPlus } = require("transbank-sdk")
+const { storePayment, updatePayment } = require("../src/db")
 
 if (process.env.WPP_CC && process.env.WPP_KEY) {
   WebpayPlus.configureForProduction(process.env.WPP_CC, process.env.WPP_KEY)
@@ -31,16 +32,17 @@ function sumTotal(cart) {
 
 module.exports = async (req, res) => {
   try {
-    const items = await validateCart(req.body.cart)
-    const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1
-    const sessionId = "S-" + Math.floor(Math.random() * 10000) + 1
-    const amount = sumTotal(items)
+    const { name, address, email } = req.body
+    const cart = await validateCart(req.body.cart)
+    const payment = await storePayment({ cart, name, address, email, status: "INITIALIZED" })
+    const buyOrder = payment.ref.value.id
+    const sessionId = payment.ref.value.id
+    const amount = sumTotal(cart)
     const returnUrl = `${process.env.BASE_URL}/api/commit`
 
-    const createResponse = await new WebpayPlus.Transaction().create(buyOrder, sessionId, amount, returnUrl)
+    const { url, token } = await new WebpayPlus.Transaction().create(buyOrder, sessionId, amount, returnUrl)
 
-    let token = createResponse.token
-    let url = createResponse.url
+    await updatePayment(buyOrder, { token, amount })
 
     res.json({ redirect: url + "?token_ws=" + token })
   } catch (err) {

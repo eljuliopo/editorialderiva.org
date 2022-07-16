@@ -1,4 +1,6 @@
 import { WebpayPlus } from "transbank-sdk"
+import { updatePayment } from "../src/db"
+import { notifySuccessfulPayment } from "../src/utils/notify"
 
 if (process.env.WPP_CC && process.env.WPP_KEY) {
   WebpayPlus.configureForProduction(process.env.WPP_CC, process.env.WPP_KEY)
@@ -25,6 +27,10 @@ export default async function handler(req, res) {
   if (token && !tbkToken) {
     // NORMAL (solo llega token_ws, tanto si es un rechazo o una aprobación)
     const commitResponse = await new WebpayPlus.Transaction().commit(token)
+    const payment = await updatePayment(commitResponse.buy_order, { status: commitResponse.status })
+    if (commitResponse.response_code === 0 && commitResponse.status === "AUTHORIZED") {
+      await notifySuccessfulPayment(payment)
+    }
     const encoded = Buffer.from(JSON.stringify(commitResponse)).toString("base64")
     res.status(301)
     res.setHeader("Location", `/resultado/${encoded}`)
@@ -32,13 +38,13 @@ export default async function handler(req, res) {
   } else {
     if (!token && !tbkToken) {
       // TIMEOUT (llegan TBK_ID_SESION y TBK_ORDEN_COMPRA)
-      // await updatePayment(tbkOrdenCompra, { status: "TIMED OUT" })
+      await updatePayment(tbkOrdenCompra, { status: "TIMED OUT" })
     } else if (!token && tbkToken) {
       // ABORTED (llegan TBK_TOKEN, TBK_ID_SESION, TBK_ORDEN_COMPRA)
-      // await updatePayment(tbkOrdenCompra, { status: "ABORTED" })
+      await updatePayment(tbkOrdenCompra, { status: "ABORTED" })
     } else if (token && tbkToken) {
       // INVALID (llega todos token_ws, TBK_TOKEN, TBK_ID_SESION, TBK_ORDEN_COMPRA)
-      // await updatePayment(tbkOrdenCompra, { status: "INVALID" })
+      await updatePayment(tbkOrdenCompra, { status: "INVALID" })
     }
     res.status(301)
     res.setHeader("Location", `/`)
