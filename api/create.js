@@ -1,6 +1,6 @@
 const contentful = require("contentful")
 const { WebpayPlus } = require("transbank-sdk")
-const { storePayment, updatePayment } = require("../src/db")
+const { storePayment, updatePayment } = require("../src/utils/db")
 
 if (process.env.WPP_CC && process.env.WPP_KEY) {
   WebpayPlus.configureForProduction(process.env.WPP_CC, process.env.WPP_KEY)

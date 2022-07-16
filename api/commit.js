@@ -1,5 +1,5 @@
 import { WebpayPlus } from "transbank-sdk"
-import { updatePayment } from "../src/db"
+import { updatePayment } from "../src/utils/db"
 import { notifySuccessfulPayment } from "../src/utils/notify"
 
 if (process.env.WPP_CC && process.env.WPP_KEY) {
