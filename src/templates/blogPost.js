@@ -70,12 +70,12 @@ export default function BlogPost(props) {
         {next && (
           <div>
             <Themed.h2 sx={{ mb: 0 }}>
-              <Themed.a
-                as={Link}
+              <Link
                 to={"/blog/" + slugify(next.title, { lower: true })}
+                sx={t => t.styles.a}
               >
                 {next.title}
-              </Themed.a>
+              </Link>
             </Themed.h2>
             <small sx={{ mt: 0, fontWeight: "bold" }}>{next.date}</small>
           </div>
@@ -83,12 +83,12 @@ export default function BlogPost(props) {
         {prev && (
           <div>
             <Themed.h2 sx={{ mb: 0 }}>
-              <Themed.a
-                as={Link}
+                <Link
                 to={"/blog/" + slugify(prev.title, { lower: true })}
-              >
-                {prev.title}
-              </Themed.a>
+                sx={t => t.styles.a}
+                >
+                   {prev.title}
+                </Link>
             </Themed.h2>
             <small sx={{ mt: 0, fontWeight: "bold" }}>{prev.date}</small>
           </div>

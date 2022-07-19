@@ -16,13 +16,17 @@ export default function Footer() {
             Editorial Deriva
           </Link>
           <br />
-          Calle Los Artesanos Nro. 199
+          Calle Los Artesanos Nro. 195
           <br />
           Villa Alegre, Región del Maule
           <br />
-          contacto@editorialderiva.org | +56 9 353 666 87
+          📧 contacto@editorialderiva.org  📞+56 9 353 666 87
         </Themed.p>
-        <SocialIcons />
+        <SocialIcons />      
+        <Themed.h6 sx={{ textAlign: "center", color: "background", mt: "5" }}>
+        <Link to="https://piducan.dev" sx={t => ({ ...t.styles.a, color: "background" })} target="_blank" rel="noreferrer">   🧑‍💻 desarrollado por piducan.dev </Link>
+        </Themed.h6>
+        
       </Container>
     </footer>
   )

@@ -69,7 +69,6 @@ export default function Item({ data }) {
           sx={{ height: "auto" }}
         />
       </Link>
-
       <div sx={{ p: 2 }}>
         <Themed.h4 sx={{ variant: "text.truncate" }}>
           <Themed.a
@@ -79,8 +78,8 @@ export default function Item({ data }) {
             {data.title}
           </Themed.a>
         </Themed.h4>
-        <Themed.p sx={{ variant: "text.truncate" }}>{data.authors[0]}</Themed.p>
-        <Themed.p sx={{ variant: "text.truncate" }}>${data.price}</Themed.p>
+        <Themed.h4 sx={{ variant: "text.truncate" }}>{data.authors[0]}</Themed.h4>
+        <Themed.h4 sx={{ variant: "text.truncate", mb: "2", textAlign: "right" }}>${data.price}</Themed.h4>
         <Button
           sx={{ width: "100%" }}
           onClick={() => {

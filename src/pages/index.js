@@ -137,7 +137,6 @@ const NewItems = ({ items }) => {
 const NewPosts = ({ items }) => {
   return (
     <div sx={{ mt: 5 }}>
-      <Divider variant="string" sx={{ marginX: 500 }} />
       <Themed.h1 sx={{ textAlign: "center" }}>Notas</Themed.h1>
       <BlogRoll items={items} />
       <Themed.p sx={{ textAlign: "center", mt: "10" }}>
@@ -146,7 +145,6 @@ const NewPosts = ({ items }) => {
           acá 👈
         </Link>
       </Themed.p>
-      <Divider variant="string" sx={{ marginX: 500 }} />
     </div>
   )
 }

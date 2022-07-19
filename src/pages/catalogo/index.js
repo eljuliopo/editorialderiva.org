@@ -29,6 +29,7 @@ export const query = graphql`
         id
         title
         authors
+        categories
         price
         image {
           gatsbyImageData

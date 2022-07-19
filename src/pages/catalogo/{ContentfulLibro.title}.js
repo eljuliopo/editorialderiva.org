@@ -82,31 +82,38 @@ export default function Libro(props) {
             flexBasis: 0,
             minWidth: 320,
           }}>
-          <Themed.h2>{current.title}</Themed.h2>
-          <Themed.h3 sx={{ mt: 1 }}>{current.authors[0]} © {current.year}</Themed.h3>
-          <Themed.h5>
-            {current.pages} páginas
-            <br /> 
-            ISBN: {current.isbn}
-            <br />
-            Formato: {current.height} x {current.width} cm.
-          </Themed.h5>
-          <Themed.h3>Valor impreso: <b>${current.price}</b></Themed.h3>
-          <Box sx={{ bg: "#E8E8E8", p: 4, marginBottom: 4 }}>
-            Reseña:
-            <MDXRenderer>
-              {current.description.childMdx.body}
-            </MDXRenderer>
-            <ShareButtons sx={{ textAlign: "right" }} title={current.title} url={ "editorialderiva.org/catalogo/" + slugify(current.title.toLowerCase())} />
-          </Box>
+          <Themed.h2 sx={{ textTransform: "uppercase" }}>{current.title}</Themed.h2>
+          <Themed.h3 sx={{ mt: 1 }}>{current.authors[0]}</Themed.h3>
+          <Themed.h4>Precio: <b>${current.price}</b></Themed.h4>
           <Button
             onClick={() => {
               addToCart({ ...current, quantity: 1 })
               toast.success(current.title)
-            }}
-          >
+            }}>
             Agregar al carro
           </Button>
+          <Box sx={{ bg: "#E8E8E8", p: 4, marginTop: 3 }}>
+            <MDXRenderer>
+              {current.description.childMdx.body}
+            </MDXRenderer>
+            <Themed.h5>
+            «{current.title}»
+            <br />
+            {current.authors}, {current.year}
+            <br />
+            {current.categories}, {current.pages} páginas
+            <br /> 
+            ISBN  {current.isbn}
+            <br />
+            Dimensiones: {current.height} x {current.width} cm.
+            <br />
+            PVP ${current.price}
+          </Themed.h5>
+            <p sx={{ textAlign: "right" }}>
+            <ShareButtons title={current.title} url={ "editorialderiva.org/catalogo/" + slugify(current.title.toLowerCase())} />
+            </p>
+          </Box>
+          
         </div>
       </div>
     </Layout>

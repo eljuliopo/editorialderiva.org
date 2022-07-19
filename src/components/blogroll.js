@@ -30,11 +30,13 @@ export default function Blog({ items }) {
             </Themed.h2>
             <small sx={{ fontWeight: "bold" }}>{post.date}</small>
             <Themed.p sx={{ mt: 3, position: "relative" }}>{post.description} </Themed.p>
-            <Link to={post.slug} sx={t => t.styles.a}>
-              Leer artículo
-            </Link>
-            <Divider />
-          </li>
+            <p sx={{ textAlign: "right" }}>
+              <Link to={post.slug} sx={t => t.styles.a} >
+                🔍 Leer nota
+              </Link>
+              <Divider />
+            </p>
+         </li>
         )
       })}
     </ul>
