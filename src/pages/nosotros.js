@@ -38,6 +38,27 @@ export default function Nosotros() {
           <li>
             <Themed.p sx={{ my: 0 }}>Flor de Papel</Themed.p>
           </li>
+          <li>
+            <Themed.p sx={{ my: 0 }}>Altamira</Themed.p>
+          </li>
+          <li>
+            <Themed.p sx={{ my: 0 }}>Comuna Literaria</Themed.p>
+          </li>
+          <li>
+            <Themed.p sx={{ my: 0 }}>Librería Proyección</Themed.p>
+          </li>
+          <li>
+            <Themed.p sx={{ my: 0 }}>Cafebrería</Themed.p>
+          </li>
+        </ul>
+        <Themed.p>En la Región del Maule puedes encontrar nuestros libros en:</Themed.p>
+        <ul>
+        <li>
+            <Themed.p sx={{ my: 0 }}>Ático Libros (Curicó & Talca)</Themed.p>
+          </li>
+          <li>
+            <Themed.p sx={{ my: 0 }}>Palabra Fuego (Talca)</Themed.p>
+          </li>
         </ul>
         <Themed.h1>Política de despacho</Themed.h1>
         <Themed.p>
