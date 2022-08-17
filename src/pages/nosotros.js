@@ -60,12 +60,6 @@ export default function Nosotros() {
             <Themed.p sx={{ my: 0 }}>Palabra Fuego (Talca)</Themed.p>
           </li>
         </ul>
-        <Themed.h1>Política de despacho</Themed.h1>
-        <Themed.p>
-          Despacho gratuito en la <strong>Región Metropolitana</strong> (<i>Santiago</i>, <i>Ñuñoa</i>, <i>Peñalolén</i>, <i>Macul</i>, <i>Providencia</i>, <i>Estación Central</i>)
-          y en la <strong>Región del Maule</strong> (<i>Talca</i>, <i>Linares</i>, <i>San Javier</i>, <i>Villa Alegre</i>, <i>Maule</i>).
-        </Themed.p>
-        <Themed.p>Todas las demás regiones con despacho a convenir 🍻</Themed.p>
       </Box>
     </Layout>
   )
