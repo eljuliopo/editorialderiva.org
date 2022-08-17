@@ -186,7 +186,8 @@ export const query = graphql`
       nodes {
         id
         title
-        date(formatString: "D MMMM YYYY", locale: "es")
+        author
+        date(formatString: "YYYY", locale: "es")
         description
       }
     }

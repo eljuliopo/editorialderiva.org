@@ -28,7 +28,7 @@ export default function Blog({ items }) {
                 {post.title}
               </Link>
             </Themed.h2>
-            <small sx={{ fontWeight: "bold" }}>{post.date}</small>
+            <small sx={{ fontWeight: "bold" }}>por {post.author}, {post.date}</small>
             <Themed.p sx={{ mt: 3, position: "relative" }}>{post.description} </Themed.p>
             <p sx={{ textAlign: "right" }}>
               <Link to={post.slug} sx={t => t.styles.a} >

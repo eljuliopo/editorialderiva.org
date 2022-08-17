@@ -58,7 +58,7 @@ export default function BlogPost(props) {
       <Seo title={post.title} />
       <div sx={{ maxWidth: "blog", mx: "auto" }}>
         <Themed.h1 sx={{ mb: 0 }}>{post.title}</Themed.h1>
-        <small sx={{ fontWeight: "bold" }}>{post.date}</small>
+        <small sx={{ fontWeight: "bold" }}>por {post.author}, {post.date}</small>
         <MDXRenderer>{post.content.childMdx.body}</MDXRenderer>
 
         <Themed.h3 sx={{ mt: 4 }}>
@@ -77,7 +77,7 @@ export default function BlogPost(props) {
                 {next.title}
               </Link>
             </Themed.h2>
-            <small sx={{ mt: 0, fontWeight: "bold" }}>{next.date}</small>
+            <small sx={{ mt: 0, fontWeight: "bold" }}>por {next.author}, {next.date}</small>
           </div>
         )}
         {prev && (
@@ -90,7 +90,7 @@ export default function BlogPost(props) {
                    {prev.title}
                 </Link>
             </Themed.h2>
-            <small sx={{ mt: 0, fontWeight: "bold" }}>{prev.date}</small>
+            <small sx={{ mt: 0, fontWeight: "bold" }}>por {prev.author}, {prev.date}</small>
           </div>
         )}
       </div>
@@ -102,7 +102,8 @@ export const blogPostQuery = graphql`
   query blogPostQuery($id: String) {
     contentfulBlogPost(id: { eq: $id }) {
       title
-      date(formatString: "D MMMM YYYY", locale: "es")
+      author
+      date(formatString: "YYYY", locale: "es")
       content {
         childMdx {
           body
