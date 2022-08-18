@@ -128,7 +128,7 @@ const theme = merge(preset, {
       },
     },
     p: {
-      fontSize: 3,
+      fontSize: 2,
       // textAlign: "justify",
     },
     blockquote: {

@@ -9,7 +9,10 @@ exports.createPages = async ({ graphql, actions }) => {
           id
           title
           author
-          date(formatString: "YYYY", locale: "es")
+          image {
+            id
+          }
+          date(formatString: "MMMM YYYY", locale: "es")
           description
         }
       }

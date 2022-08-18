@@ -123,7 +123,7 @@ const NewItems = ({ items }) => {
             <Themed.p sx={{ m: "auto" }}>
               Esto y más en{" "}
               <Link to="/catalogo" sx={t => t.styles.a}>
-                nuestro catálogo
+                <u>nuestro catálogo</u>
               </Link>
             </Themed.p>
             <Divider />
@@ -187,7 +187,10 @@ export const query = graphql`
         id
         title
         author
-        date(formatString: "YYYY", locale: "es")
+        image {
+          gatsbyImageData
+        }
+        date(formatString: "MMMM YYYY", locale: "es")
         description
       }
     }

@@ -25,7 +25,6 @@ function ShareButtons({ title, url, twitterHandle, tags }) {
       <FacebookShareButton url={url}>
         <FacebookIcon size={30} round={true} />
       </FacebookShareButton>
-
       <TwitterShareButton
         url={url}
         title={title}
@@ -34,15 +33,12 @@ function ShareButtons({ title, url, twitterHandle, tags }) {
       >
         <TwitterIcon size={30} round={true} />
       </TwitterShareButton>
-
       <TelegramShareButton url={url}>
         <TelegramIcon size={30} round={true} />
       </TelegramShareButton>
-
       <RedditShareButton url={url} title={title}>
         <RedditIcon size={30} round={true} />
       </RedditShareButton>
-
       <WhatsappShareButton url={url} title={title}>
         <WhatsappIcon size={30} round={true} />
       </WhatsappShareButton>
@@ -55,12 +51,13 @@ export default function BlogPost(props) {
   const { prev, next } = props.pageContext
   return (
     <Layout {...props}>
-      <Seo title={post.title} />
+      <Seo 
+        title={post.title} 
+         />
       <div sx={{ maxWidth: "blog", mx: "auto" }}>
         <Themed.h1 sx={{ mb: 0 }}>{post.title}</Themed.h1>
-        <small sx={{ fontWeight: "bold" }}>por {post.author}, {post.date}</small>
+        <small sx={{ fontWeight: "bold", fontSize: "1.05em" }}>✎ por {post.author} / {post.date}</small>
         <MDXRenderer>{post.content.childMdx.body}</MDXRenderer>
-
         <Themed.h3 sx={{ mt: 4 }}>
           ¿Te gustó lo que leíste?, compártelo 👇
         </Themed.h3>
@@ -103,7 +100,7 @@ export const blogPostQuery = graphql`
     contentfulBlogPost(id: { eq: $id }) {
       title
       author
-      date(formatString: "YYYY", locale: "es")
+      date(formatString: "MMMM YYYY", locale: "es")
       content {
         childMdx {
           body
