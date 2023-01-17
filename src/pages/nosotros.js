@@ -59,6 +59,9 @@ export default function Nosotros() {
           <li>
             <Themed.p sx={{ my: 0 }}>Palabra Fuego (Talca)</Themed.p>
           </li>
+          <li>
+            <Themed.p sx={{ my: 0 }}>Artemisa (Talca)</Themed.p>
+          </li>
         </ul>
       </Box>
     </Layout>

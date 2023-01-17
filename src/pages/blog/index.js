@@ -23,6 +23,7 @@ export const query = graphql`
         id
         title
         author
+        description
         image {
           gatsbyImageData
         }
